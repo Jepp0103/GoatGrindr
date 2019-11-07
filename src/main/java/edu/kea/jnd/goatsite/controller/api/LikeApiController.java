@@ -32,12 +32,8 @@ public class LikeApiController {
 
     @PostMapping("/likes")
     public Like createLike(@Valid @RequestBody Like like) {
+        System.out.println(like);
         return likeRepository.save(like);
     }
 
- /*   @DeleteMapping("/likes")
-    public Like deleteLike(@Valid @RequestBody Like like) {
-        likeRepository.delete(like);
-        return like;
-    }*/
 }

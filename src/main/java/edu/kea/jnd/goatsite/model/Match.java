@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Table(name = "matches")
 public class Match {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) //Autogenererer alle felter i databasen.
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //Autogenererer alle felter i databasen.
     private Long id;
     private Long goat1Id;
     private Long goat2Id;

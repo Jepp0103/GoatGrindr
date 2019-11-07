@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@RestController
+@RestController //Returnere data
 @RequestMapping(value = "/api")
 public class DislikeApiController {
 

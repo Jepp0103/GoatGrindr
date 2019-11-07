@@ -10,8 +10,12 @@ import javax.persistence.*;
 public class Dislike {
     @NotNull
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotNull
     private Long goatDisliker;
+
+    @NotNull
     private Long goatDisliked;
 }
