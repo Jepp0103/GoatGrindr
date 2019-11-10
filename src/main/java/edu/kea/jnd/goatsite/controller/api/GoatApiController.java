@@ -17,7 +17,6 @@ public class GoatApiController {
 
     @GetMapping("/goats")
     public Iterable<Goat> getGoats() {
-
         return goatRepository.findAll();
     }
 

@@ -10,6 +10,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping(value = "/api")
 public class LikeApiController {
+
     @Autowired
     private LikeRepository likeRepository;
 
