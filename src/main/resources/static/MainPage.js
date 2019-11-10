@@ -1,5 +1,5 @@
 /* Built upon: LikeCarousel (c) 2019 Simone P.M. github.com/simonepm - Licensed MIT */
-class Frontpage {
+class MainPage {
 
     //TODO - Figure out how to set the data from a database instead of hardcoding
 
@@ -286,4 +286,4 @@ class Frontpage {
     }
 }
 
-new Frontpage();
+new MainPage();

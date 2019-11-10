@@ -2,6 +2,7 @@ package edu.kea.jnd.goatsite.controller.api;
 
 import edu.kea.jnd.goatsite.model.Like;
 import edu.kea.jnd.goatsite.repository.LikeRepository;
+import edu.kea.jnd.goatsite.repository.MatchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +13,7 @@ import javax.validation.Valid;
 public class LikeApiController {
     @Autowired
     private LikeRepository likeRepository;
+    private MatchRepository matchRepository;
 
   /*  @GetMapping("/likes")
     public Iterable<Like> getLikes() {
@@ -35,4 +37,10 @@ public class LikeApiController {
         System.out.println(like);
         return likeRepository.save(like);
     }
+
+/*    @PostMapping("/likes")
+    public Like createLikesToMatch(@Valid @RequestBody Like like) {
+        System.out.println(like);
+        return matchRepository.save(like);
+    }*/
 }
