@@ -46,7 +46,7 @@ public class Goat {
     @Enumerated(EnumType.ORDINAL)
     private Gender gender;
 
-   //Goat_liker relation
+ /*  //Goat_liker relation
     @OneToMany(mappedBy = "goatLiker")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
@@ -56,5 +56,5 @@ public class Goat {
     @OneToMany(mappedBy = "goatLiked")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-    private List<Like> goatLikeds;
+    private List<Like> goatLikeds;*/
 }
