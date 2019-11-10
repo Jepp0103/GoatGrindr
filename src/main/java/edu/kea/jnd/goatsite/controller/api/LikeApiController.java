@@ -35,5 +35,4 @@ public class LikeApiController {
         System.out.println(like);
         return likeRepository.save(like);
     }
-
 }

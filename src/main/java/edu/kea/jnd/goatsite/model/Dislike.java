@@ -1,6 +1,8 @@
 package edu.kea.jnd.goatsite.model;
 import com.sun.istack.NotNull;
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
@@ -13,9 +15,12 @@ public class Dislike {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    private Long goatDisliker;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "goat_disliker_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Goat goatDisliker;
 
-    @NotNull
-    private Long goatDisliked;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "goat_disliked_id", nullable = false)
+    private Goat goatDisliked;
 }
