@@ -17,18 +17,11 @@ public class GoatApiController {
 
     @GetMapping("/goats")
     public Iterable<Goat> getGoats() {
-
         return goatRepository.findAll();
     }
 
     @GetMapping("/goats/{id}")
     public Object getGoatById(@PathVariable long id) {
-/*        Optional goatOrNull = goatRepository.findById(id);
-        if (goatOrNull.isPresent()) {
-            return goatOrNull.get();
-        } else {
-            return "404 - Goat not found";
-        }*/
         return goatRepository.findById(id).orElse(null);
     }
 

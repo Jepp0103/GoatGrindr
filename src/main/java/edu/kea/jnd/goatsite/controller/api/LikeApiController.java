@@ -13,7 +13,7 @@ public class LikeApiController {
     @Autowired
     private LikeRepository likeRepository;
 
-    @GetMapping("/likes")
+  /*  @GetMapping("/likes")
     public Iterable<Like> getLikes() {
         return likeRepository.findAll();
     }
@@ -29,7 +29,7 @@ public class LikeApiController {
         System.out.println(goatLiker);
         return likeRepository.findAllByGoatLiker(goatLiker);
     }
-
+*/
     @PostMapping("/likes")
     public Like createLike(@Valid @RequestBody Like like) {
         System.out.println(like);
