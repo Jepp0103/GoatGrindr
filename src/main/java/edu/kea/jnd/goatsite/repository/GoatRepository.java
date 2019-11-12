@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface GoatRepository extends CrudRepository<Goat, Long> {
     Iterable<Goat> findAllByName(String name);
+    Goat findFirstByName(String name);
+
     Iterable<Goat> findAllByGender(Gender gender);
 
     @Query(value = "SELECT * FROM Goats g WHERE g.id < 2", nativeQuery = true)
