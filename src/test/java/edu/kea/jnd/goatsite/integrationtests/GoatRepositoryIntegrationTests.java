@@ -1,7 +1,6 @@
-package edu.kea.jnd.goatsite.integrationtest;
+package edu.kea.jnd.goatsite.integrationtests;
+
 import edu.kea.jnd.goatsite.model.Goat;
-
-
 import edu.kea.jnd.goatsite.repository.GoatRepository;
 import org.junit.Assert;
 import org.junit.Test;
@@ -12,25 +11,24 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Date;
 
-import static org.junit.Assert.assertThat;
-
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class GoatRepositoryIntegrationTests {
-    Iterable<Goat> goats;
 
     @Autowired
     GoatRepository goatRepository;
 
     @Test
-    public void CanWeGetAllGoats(){
-        goats =  goatRepository.findAll();
+    public void canGetAllGoats() {
+        Iterable<Goat> goats = goatRepository.findAll();
     }
 
     @Test
-    public void canWeCreateAndGetGoat() {
-        //create goat
+    public void canCreateAndGetGoatByName() {
+
+        // create a goat
         Goat goat = new Goat();
         goat.setName("Jeppe");
         goat.setDob(new Date());
@@ -39,13 +37,9 @@ public class GoatRepositoryIntegrationTests {
         goatRepository.save(goat);
 
         // get the goat by its name
-        goatRepository.findFirstByName(goat.getName());
+        Goat found = goatRepository.findFirstByName(goat.getName());
 
         // assert that we found the goat by its name
-        // assertThat(found.getName("Jeppe"));
-
-
-
+        assertThat(found.getName()).isEqualTo("Jeppe");
     }
-
 }
