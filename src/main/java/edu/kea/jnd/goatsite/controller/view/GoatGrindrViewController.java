@@ -15,6 +15,11 @@ public class GoatGrindrViewController {
     GoatRepository goatRepository;
     List<Goat> goats;
 
+    @GetMapping(value = "/")
+    public String getLoginPage(){
+        return "loginPage.html";
+    }
+
     @GetMapping(value = "/goatgrindr")
     public String findAllDatabaseObjects(Model model) {
         goats = (List<Goat>) goatRepository.findAll();
@@ -29,10 +34,6 @@ public class GoatGrindrViewController {
         return "index.html";
     }
 
-    @GetMapping(value = "/loginpage")
-    public String getLoginPage(){
-        return "loginPage.html";
-    }
 
     @GetMapping(value = "/creategoat")
     public String createGoatAccount(){
