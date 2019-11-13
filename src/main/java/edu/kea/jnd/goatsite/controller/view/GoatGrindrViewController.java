@@ -7,10 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.util.List;
-
-
 @Controller
 public class GoatGrindrViewController {
 
@@ -32,7 +29,7 @@ public class GoatGrindrViewController {
 
     //Viser ikke carosel når man viser navn endnu... denne metode er ikke brugbar pt.
     @GetMapping(value = "/goatgrindr/name")
-    public String tryTheTestPath(Model model, @RequestParam(value = "name") String visitorName) {
+    public String findGoatByHardcodedName(Model model, @RequestParam(value = "name") String visitorName) {
         model.addAttribute("name", visitorName);
         return "index.html";
     }
