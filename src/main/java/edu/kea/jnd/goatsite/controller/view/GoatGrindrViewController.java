@@ -34,7 +34,7 @@ public class GoatGrindrViewController {
         return "loginPage.html";
     }
 
-    @GetMapping(value = "/createaccount")
+    @GetMapping(value = "/creategoat")
     public String createGoatAccount(){
         return "createGoat.html";
     }

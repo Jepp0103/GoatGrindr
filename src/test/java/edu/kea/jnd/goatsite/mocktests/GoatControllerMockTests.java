@@ -27,5 +27,4 @@ public class GoatControllerMockTests {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
-
 }
