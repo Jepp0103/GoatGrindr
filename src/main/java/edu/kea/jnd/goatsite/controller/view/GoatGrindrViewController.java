@@ -39,4 +39,7 @@ public class GoatGrindrViewController {
     public String createGoatAccount(){
         return "createGoat.html";
     }
+
+    //to do post mapping på create goat som skal interagere med html fil.
+
 }
