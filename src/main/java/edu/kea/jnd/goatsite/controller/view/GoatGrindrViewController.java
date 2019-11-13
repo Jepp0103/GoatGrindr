@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
-
 @Controller
 public class GoatGrindrViewController {
 
@@ -30,4 +29,13 @@ public class GoatGrindrViewController {
         return "index.html";
     }
 
+    @GetMapping(value = "/loginpage")
+    public String getLoginPage(){
+        return "loginPage.html";
+    }
+
+    @GetMapping(value = "/createaccount")
+    public String createGoatAccount(){
+        return "createGoat.html";
+    }
 }
