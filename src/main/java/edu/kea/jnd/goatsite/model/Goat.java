@@ -13,7 +13,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Past;
 import java.util.Date;
-import java.util.List;
 
 @Data
 @Entity
