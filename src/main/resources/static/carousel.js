@@ -128,6 +128,7 @@ class Carousel {
             // check threshold
             if (propX > 0.25 && e.direction == Hammer.DIRECTION_RIGHT) {
                 console.log("To the right....  ");
+                location.reload();
                 //console log -> call like API
 
                 successful = true;
@@ -136,6 +137,7 @@ class Carousel {
 
             } else if (propX < -0.25 && e.direction == Hammer.DIRECTION_LEFT) {
                 console.log("To the left....  ");
+                location.reload();
                 //console log -> call like API
 
                 successful = true;
