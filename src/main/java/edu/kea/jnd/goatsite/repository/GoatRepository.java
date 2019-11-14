@@ -6,10 +6,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
+
 @Repository
 public interface GoatRepository extends CrudRepository<Goat, Long> {
     Iterable<Goat> findAllByName(String name);
     Goat findFirstByName(String name);
+
+
 
     Iterable<Goat> findAllByGender(Gender gender);
 
@@ -19,6 +23,13 @@ public interface GoatRepository extends CrudRepository<Goat, Long> {
 
     @Query(value = "SELECT * FROM Goats g WHERE g.id < 2", nativeQuery = true)
     Iterable<Goat> findTheOldTimers();
+
+    @Query(value ="INSERT INTO goats (dob, gender, long_description, name, password, short_description, username)"
+          +"VALUES(?, ?, ?, ?, ?, ?, ?, ?)", nativeQuery = true)
+     void createGoat(Date dob, Gender gender, String long_description, String name, String password,
+                     String short_description, String username);
+
+
 
     @Query(value = "SELECT * FROM goats g WHERE g.id = ?", nativeQuery = true)
     Goat findRandomGoat(int id);
