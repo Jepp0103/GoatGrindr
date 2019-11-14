@@ -8,7 +8,7 @@
 <body>
 
 <h1> Fill out info below to begin the process of creating the goat </h1>
-    <form action="/creategoat" method="post">
+<form action="/creategoat" method="post">
     <label>Username: </label>
     <input type="text" name="username"/>
     <br>
@@ -18,10 +18,13 @@
     <label>Goat name: </label>
     <input type="text" name="name"/>
     <br>
-    <label>Short Description: </label>
+    <label>Date of birth: </label>
+    <input type="text" name="dob"/>
+    <br>
+    <label>Short description: </label>
     <input type="text" name="shortDescription"/>
     <br>
-    <label>Long Description: </label>
+    <label>Long description: </label>
     <input type="text" name="longDescription"/>
     <br>
     <label>Gender: </label>
@@ -29,9 +32,9 @@
     <br>
 
 
-        <div><input type="submit" value="Create the creature"/></div>
+    <div><input type="submit" value="Create the creature"/></div>
 
-  </form>
+</form>
 </div>
 
 </body>
