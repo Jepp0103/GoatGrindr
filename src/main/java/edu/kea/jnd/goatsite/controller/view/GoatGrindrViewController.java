@@ -19,7 +19,6 @@ public class GoatGrindrViewController {
 
     @Autowired
     GoatRepository goatRepository;
-    List<Goat> goats;
 
     @PostMapping(value = "/creategoat")
     public String createTheCreature(@ModelAttribute Goat goat){
@@ -40,16 +39,7 @@ public class GoatGrindrViewController {
         return "loginPage.html";
     }
 
-    /*
-    @GetMapping(value = "/goatgrindr")
-    public String findAllDatabaseObjects(Model model) {
-        goats = (List<Goat>) goatRepository.findAll();
-        model.addAttribute("goats", goats);
-        return "index.html";
-    }
-     */
 
-    //Viser ikke carosel når man viser navn endnu... denne metode er ikke brugbar pt.
     @GetMapping(value = "/goatgrindr")
     public String findGoatByHardcodedName(Model model) {
 
@@ -71,7 +61,4 @@ public class GoatGrindrViewController {
     public String createGoatAccount(){
         return "createGoat.html";
     }
-
-    //to do post mapping på create goat som skal interagere med html fil.
-
 }
