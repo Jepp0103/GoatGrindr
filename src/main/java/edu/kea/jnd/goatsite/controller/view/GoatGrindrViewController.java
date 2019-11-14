@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import java.util.List;
 @Controller
 public class GoatGrindrViewController {
@@ -20,20 +20,27 @@ public class GoatGrindrViewController {
         return "loginPage.html";
     }
 
+    /*
     @GetMapping(value = "/goatgrindr")
     public String findAllDatabaseObjects(Model model) {
         goats = (List<Goat>) goatRepository.findAll();
         model.addAttribute("goats", goats);
         return "index.html";
     }
+     */
 
     //Viser ikke carosel når man viser navn endnu... denne metode er ikke brugbar pt.
-    @GetMapping(value = "/goatgrindr/name")
-    public String findGoatByHardcodedName(Model model, @RequestParam(value = "name") String visitorName) {
-        model.addAttribute("name", visitorName);
+    @GetMapping(value = "/goatgrindr")
+    public String findGoatByHardcodedName(Model model) {
+
+        int value = goatRepository.findMaxValue();
+        System.out.println(value);
+
+        Goat goat = goatRepository.findRandomGoat(value);
+        model.addAttribute("name", goat.getName());
+
         return "index.html";
     }
-
 
     @GetMapping(value = "/creategoat")
     public String createGoatAccount(){
