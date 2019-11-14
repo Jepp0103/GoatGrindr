@@ -143,7 +143,6 @@ class Carousel {
                 successful = true;
                 // get left border position
                 posX = - (this.board.clientWidth + this.topCard.clientWidth)
-
             }
 
             if (successful) {
