@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
+import java.util.Random;
+
 @Controller
 public class GoatGrindrViewController {
 
@@ -33,10 +35,12 @@ public class GoatGrindrViewController {
     @GetMapping(value = "/goatgrindr")
     public String findGoatByHardcodedName(Model model) {
 
+        Random random = new Random();
         int value = goatRepository.findMaxValue();
-        System.out.println(value);
 
-        Goat goat = goatRepository.findRandomGoat(value);
+        int randomGoat = random.nextInt(value);
+
+        Goat goat = goatRepository.findRandomGoat(randomGoat+1);
         model.addAttribute("name", goat.getName());
 
         return "index.html";
