@@ -23,10 +23,12 @@ public class GoatGrindrViewController {
 
     @PostMapping(value = "/creategoat")
     public String createTheCreature(@ModelAttribute Goat goat){
-        //goatRepository.createGoat(goat.getDob(), );
-        if(goat.getName().length() > 0 && goat.getLongDescription().length() > 0
-                && goat.getShortDescription().length() > 0 && goat.getPassword().length() > 0
-                && goat.getUsername().length() > 0) {
+        if(goat.getName().length() > 0
+                && goat.getDob() != null
+                && goat.getPassword().length() > 0
+                && goat.getUsername().length() > 0
+                && goat.getUsername().contains("@")
+                && goat.getUsername().contains("mail")) {
             goatRepository.save(goat);
             return "loginPage.html";
         }

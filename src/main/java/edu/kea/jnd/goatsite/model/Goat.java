@@ -28,11 +28,9 @@ public class Goat {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dob;
 
-    @NotNull
     @Length(max = 500)
     private String shortDescription;
 
-    @NotNull
     @Length(max = 10000)
     private String longDescription;
 
