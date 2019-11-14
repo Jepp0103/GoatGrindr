@@ -1,12 +1,7 @@
 package edu.kea.jnd.goatsite.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 import lombok.Data;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -25,24 +20,31 @@ public class Goat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     private String name;
 
+    @NotNull
     @Past
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dob;
 
+    @NotNull
     @Length(max = 500)
     private String shortDescription;
 
+    @NotNull
     @Length(max = 10000)
     private String longDescription;
 
+    @NotNull
     private String password;
 
+    @NotNull
     @Email(message = "Should be an email")
     private String username;
 
     //Create with an enum
+    @NotNull
     @Enumerated(EnumType.ORDINAL)
     private Gender gender;
 
