@@ -42,7 +42,10 @@ public class GoatGrindrViewController {
 
         Goat goat = goatRepository.findRandomGoat(randomGoat+1);
         model.addAttribute("name", goat.getName());
-
+        model.addAttribute("dob", goat.getDob());
+        model.addAttribute("shortDescription", goat.getShortDescription());
+        model.addAttribute("longDescription", goat.getLongDescription());
+        model.addAttribute("gender", goat.getGender());
         return "index.html";
     }
 
