@@ -13,10 +13,9 @@ public interface GoatRepository extends CrudRepository<Goat, Long> {
 
     Iterable<Goat> findAllByGender(Gender gender);
 
-    /*
-    @Query(value = "SELECT password, username FROM goats WHERE password IS NOT NULL AND username IS NOT NULL")
-    Iterable<Goat> findGoatByUserNameAndPassword(String password, String username);
-*/
+   /* @Query(value = "SELECT password, username FROM goats WHERE password IS NOT NULL AND username IS NOT NULL")
+    Iterable<Goat> findGoatByUserNameAndPassword(String password, String username);*/
+
 
     @Query(value = "SELECT * FROM Goats g WHERE g.id < 2", nativeQuery = true)
     Iterable<Goat> findTheOldTimers();
