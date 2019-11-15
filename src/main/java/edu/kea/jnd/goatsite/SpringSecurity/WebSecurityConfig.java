@@ -29,6 +29,8 @@ import javax.sql.DataSource;
             throws Exception{
             auth.jdbcAuthentication()
              .dataSource(datasource)
+                    .usersByUsernameQuery()
+                    .authoritiesByUsernameQuery()
              .withDefaultSchema()
              .withUser(User.withUsername("username")
              .password(passwordEncoder().encode("password"))
