@@ -17,6 +17,7 @@ public class GoatGrindrViewController {
     Goat goat;
     @Autowired
     GoatRepository goatRepository;
+    //List<Goat> goats;
 
     @PostMapping(value = "/creategoat")
     public String createTheGoat(@ModelAttribute Goat goat) {
@@ -27,7 +28,8 @@ public class GoatGrindrViewController {
                 && goat.getUsername().contains("@")
                 && goat.getUsername().contains("mail")) {
             goatRepository.save(goat);
-            return "loginPage.html";
+            //return "loginPage.html";
+            return "goatHasBeenCreated.html";
         }
         return "createGoat.html";
     }
@@ -65,4 +67,17 @@ public class GoatGrindrViewController {
     public String createGoatAccount() {
         return "createGoat.html";
     }
+
+    @GetMapping(value = "/goatHasBeenCreated")
+    public String backToMain(){
+        return "goatHasBeenCreated.html";
+    }
+
+    @GetMapping(value = "/loginPage")
+    public String backToLogin(){
+        return "loginPage.html";
+    }
+
+    //to do post mapping på create goat som skal interagere med html fil. Done.
+
 }
