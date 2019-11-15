@@ -18,11 +18,11 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
         protected void configure(HttpSecurity http) throws Exception {
             http
                     .authorizeRequests()
-                    .antMatchers("/loginPage", "/createGoat").permitAll()
+                    .antMatchers("/loginPage", "/createGoat", "/").permitAll()
                     .anyRequest().authenticated()
                     .and()
                     .formLogin()
-                    .loginPage("/login")
+                    .loginPage("/loginPage")
                     .permitAll()
                     .and()
                     .logout()
