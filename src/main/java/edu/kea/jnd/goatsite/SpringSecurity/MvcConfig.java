@@ -12,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
            // registry.addViewController("/").setViewName("home");
            //registry.addViewController("/hello").setViewName("hello");
             registry.addViewController("/loginPage").setViewName("loginPage");
+            registry.addViewController("/createGoat").setViewName("createGoat");
         }
 
 }

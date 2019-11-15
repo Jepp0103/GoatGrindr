@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface GoatRepository extends CrudRepository<Goat, Long> {
     Iterable<Goat> findAllByName(String name);
@@ -17,7 +19,7 @@ public interface GoatRepository extends CrudRepository<Goat, Long> {
     Iterable<Goat> findAllByGender(Gender gender);
 
     @Query(value = "SELECT password FROM goats WHERE username =?" , nativeQuery = true)
-    Iterable<Goat> findGoatByUserNameAndPassword(String username);
+    Optional<Goat> findGoatByUserNameAndPassword(String username);
 
 
     @Query(value = "SELECT * FROM Goats g WHERE g.id < 2", nativeQuery = true)

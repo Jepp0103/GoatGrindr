@@ -15,7 +15,7 @@
     You have been logged out.
 </div>
 <form th:action="@{/loginpage}" method="post">
-    <div><label> User Name : <input type="text" name="username"/> </label></div>
+    <div><label> Username: <input type="text" name="username"/> </label></div>
     <div><label> Password: <input type="password" name="password"/> </label></div>
     <div><input type="submit" value="Sign In"/></div>
 </form>
@@ -40,6 +40,10 @@
     </form>
 </div-->
 <div>
+    <form action = "/createGoat">
+        <button type="submit">Create Account</button>
+    </form>
+
     <p><a th:href="@{/creategoat}">Create Account</a></p>
 
 </div>
