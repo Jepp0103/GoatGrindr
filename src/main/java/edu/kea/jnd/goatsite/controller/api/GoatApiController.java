@@ -47,6 +47,4 @@ public class GoatApiController {
     public Goat createGoat(@Valid @RequestBody Goat goat) {
         return goatRepository.save(goat);
     }
-
-
 }
