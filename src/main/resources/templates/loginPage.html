@@ -1,53 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <meta charset="UTF-8">
     <title>Log into GoatGrindr</title>
 </head>
 <body>
-
-<h1>Welcome To Goat Grindr!!!</h1>
-
+<h1>Welcome To GoatGrindr!!!</h1>
 <div th:if="${param.error}">
-    Invalid username and password, please retry or leave.
+    Invalid username and password.
 </div>
 <div th:if="${param.logout}">
     You have been logged out.
 </div>
-<form th:action="@{/loginpage}" method="post">
-    <div><label> Username: <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Sign In"/></div>
-</form>
-
-
-
-
-
-
-
-<!--div>
-
-    <form action="/goatgrindr" method="get">
-        <label>Username:</label>
-        <input type="text" name="username">
-        <br>
-        <label>Password:</label>
-        <input type="text" name="password">
-        <br>
-
-        <div><input type="submit" value="Submit"/></div>
-    </form>
-</div-->
-<div>
-    <form action = "/createGoat">
-        <button type="submit">Create Account</button>
-    </form>
-
-    <p><a th:href="@{/creategoat}">Create Account</a></p>
-
+<div th:if="${param.login}">
+    You have logged in succesfully
 </div>
-
+<form th:action="@{/login}" method='post'>
+    <div><label> Username : <input type='text' name='username'/> </label></div>
+    <div><label> Password: <input type='password' name='password'/> </label></div>
+    <div><input type="submit" value="Sign in"/></div>
+</form>
+<div>
+    <p><a th:href="@{/creategoat}">Create Account</a></p>
+</div>
 
 </body>
 </html>
