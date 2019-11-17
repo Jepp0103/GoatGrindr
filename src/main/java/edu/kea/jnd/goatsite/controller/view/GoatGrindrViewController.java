@@ -75,8 +75,4 @@ public class GoatGrindrViewController {
         return "goatHasBeenCreated.html";
     }
 
-
-
-    //to do post mapping på create goat som skal interagere med html fil. Done.
-
 }
