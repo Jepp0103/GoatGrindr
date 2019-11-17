@@ -13,13 +13,10 @@ public interface GoatRepository extends CrudRepository<Goat, Long> {
     Iterable<Goat> findAllByName(String name);
     Goat findFirstByName(String name);
 
-   /* Goat findByPassword(String password);
-    Goat findByMail(String mail);*/
-
     Iterable<Goat> findAllByGender(Gender gender);
 
-    @Query(value = "SELECT password FROM goats WHERE username =?" , nativeQuery = true)
-    Optional<Goat> findGoatByUserNameAndPassword(String username);
+    //@Query(value = "SELECT password FROM goats WHERE username =?" , nativeQuery = true)
+    Goat findGoatByUsername(String username);
 
 
     @Query(value = "SELECT * FROM Goats g WHERE g.id < 2", nativeQuery = true)
