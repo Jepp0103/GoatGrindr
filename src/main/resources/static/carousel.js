@@ -125,18 +125,16 @@ class Carousel {
             // check threshold
             if (propX > 0.25 && e.direction == Hammer.DIRECTION_RIGHT) {
                 console.log("To the right....  ");
+                this.liked();
                 location.reload();
-                //console log -> call like API
-
                 successful = true;
                 // get right border position
                 posX = this.board.clientWidth
 
             } else if (propX < -0.25 && e.direction == Hammer.DIRECTION_LEFT) {
                 console.log("To the left....  ");
+                this.disliked();
                 location.reload();
-                //console log -> call like API
-
                 successful = true;
                 // get left border position
                 posX = - (this.board.clientWidth + this.topCard.clientWidth)
@@ -165,6 +163,102 @@ class Carousel {
 
             }
         }
+    }
+
+    onActionDislike() {
+
+        this.disliked();
+
+        // change the transition property
+        this.topCard.style.transition = 'transform 400ms ease-in';
+        this.nextCard.style.transition = 'transform 400ms ease-in';
+
+        // throw card in the chosen direction
+        let posX = -(this.board.clientWidth + this.topCard.clientWidth);
+        this.topCard.style.transform = 'translateX(' + posX + 'px) translateY(-150px) rotate(-15deg)';
+        if (this.nextCard) this.nextCard.style.transform = 'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1)';
+
+        // wait transition end
+        setTimeout(() => {
+            // remove swiped card
+            this.board.removeChild(this.topCard);
+            // add new card
+            this.push();
+            // handle gestures on new top card
+            this.handle()
+        }, 200);
+
+    }
+
+    onActionLike() {
+
+        this.liked();
+
+        // change the transition property
+        this.topCard.style.transition = 'transform 400ms ease-in';
+        this.nextCard.style.transition = 'transform 400ms ease-in';
+
+        // throw card in the chosen direction
+        let posX = this.board.clientWidth;
+        this.topCard.style.transform = 'translateX(' + posX + 'px) translateY(-150px) rotate(15deg)';
+        if (this.nextCard) this.nextCard.style.transform = 'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1)';
+
+        // wait transition end
+        setTimeout(() => {
+            // remove swiped card
+            this.board.removeChild(this.topCard);
+            // add new card
+            this.push();
+            // handle gestures on new top card
+            this.handle()
+        }, 200);
+
+    }
+
+    disliked() {
+        this.isFlipped = false;
+        let token = $("meta[name='_csrf']").attr("content");
+        let data = {
+            "goatDisliker": this.candidate, //TODO - Set this to be the user.
+            "goatDisliked": this.candidate
+        };
+        $.ajax({
+            url: "/api/dislike",
+            headers: {"X-CSRF-TOKEN": token},
+            dataType: "text",
+            type: "post",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function() {
+                console.log("Succesfully disliked the goat")
+            },
+            error: function() {
+                console.log("Didn't dislike the goat")
+            }
+        });
+    }
+
+    liked() {
+        this.isFlipped = false;
+        let token = $("meta[name='_csrf']").attr("content");
+        let data = {
+            "goatLiker": this.candidate, //TODO - Set this to be the user.
+            "goatLiked": this.candidate
+        };
+        $.ajax({
+            url: "/api/like",
+            headers: {"X-CSRF-TOKEN": token},
+            dataType: "text",
+            type: "post",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function() {
+                console.log("Succesfully liked the goat")
+            },
+            error: function() {
+                console.log("Didn't like the goat")
+            }
+        });
     }
 
     push() {
