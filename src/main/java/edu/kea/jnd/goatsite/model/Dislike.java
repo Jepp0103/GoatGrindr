@@ -10,17 +10,15 @@ import javax.persistence.*;
 @Entity
 @Table(name = "dislikes")
 public class Dislike {
-    @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "goat_disliker_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Goat goatDisliker;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "goat_disliked_id", nullable = false)
     private Goat goatDisliked;
 }

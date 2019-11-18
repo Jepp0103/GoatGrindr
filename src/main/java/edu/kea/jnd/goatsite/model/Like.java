@@ -15,12 +15,8 @@ public class Like {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "goat_liker_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Goat goatLiker;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "goat_liked_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Goat goatLiked;
 }

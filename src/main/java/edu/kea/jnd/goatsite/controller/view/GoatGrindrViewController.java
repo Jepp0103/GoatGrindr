@@ -29,11 +29,6 @@ public class GoatGrindrViewController {
         return "loginPage.html";
     }
 
-    @GetMapping(value = "/logout")
-    public String getToLogout(){
-        return "logoutPage.html";
-    }
-
     @GetMapping(value = "/goatgrindr")
     public String findGoatObject(Model model) {
         Random random = new Random();
@@ -62,8 +57,6 @@ public class GoatGrindrViewController {
         }
         return "createGoat.html";
     }
-
-
 
     @GetMapping(value = "/creategoat")
     public String createGoatAccount() {

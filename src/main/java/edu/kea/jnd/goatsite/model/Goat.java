@@ -41,7 +41,6 @@ public class Goat {
     @Email(message = "Should be an email")
     private String username;
 
-    //Create with an enum
     @NotNull
     @Enumerated(EnumType.ORDINAL)
     private Gender gender;
@@ -51,16 +50,4 @@ public class Goat {
 
     @NotNull
     private boolean enabled;
-
- /*  //Goat_liker relation
-    @OneToMany(mappedBy = "goatLiker")
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    private List<Like> goatLikers;
-
-    //Goat_liked relation
-    @OneToMany(mappedBy = "goatLiked")
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    private List<Like> goatLikeds;*/
 }

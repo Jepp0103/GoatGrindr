@@ -15,9 +15,7 @@ public interface GoatRepository extends CrudRepository<Goat, Long> {
 
     Iterable<Goat> findAllByGender(Gender gender);
 
-    //@Query(value = "SELECT password FROM goats WHERE username =?" , nativeQuery = true)
     Goat findGoatByUsername(String username);
-
 
     @Query(value = "SELECT * FROM Goats g WHERE g.id < 2", nativeQuery = true)
     Iterable<Goat> findTheOldTimers();
@@ -27,7 +25,5 @@ public interface GoatRepository extends CrudRepository<Goat, Long> {
 
     @Query(value = "SELECT MAX(id) FROM goats", nativeQuery = true)
     int findMaxValue();
-
-
 }
 
