@@ -40,15 +40,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
 <script src="carousel.js"></script>
 
-<span th:text="'Goat: Name: ' + ${name} +
-              ', Birthday: ' + ${dob} +
-              ', Short description: ' + ${shortDescription} +
-              ', Long description: ' + ${longDescription} +
-              ', Gender: ' + ${gender}"> Who are you? </span>
-<!--
-<ol>
-    <li th:each="goat : ${goats}" th:text="${goat}"></li>
-</ol> -->
 
 <h6>-------------------------------------------------------------------------</h6>
 <p th:inline="text">Signed in as: [[${#httpServletRequest.remoteUser}]]!</p>
