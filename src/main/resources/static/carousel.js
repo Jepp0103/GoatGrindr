@@ -10,7 +10,6 @@ class Carousel {
 
         // handle gestures
         this.handle();
-
     }
 
     handle() {
@@ -43,7 +42,6 @@ class Carousel {
             this.hammer.on('pan', (e) => { this.onPan(e) })
 
         }
-
     }
 
     onTap(e) {
@@ -65,7 +63,6 @@ class Carousel {
             // reset transform properties
             this.topCard.style.transform = 'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1)'
         }, 100)
-
     }
 
     onPan(e) {
@@ -167,17 +164,15 @@ class Carousel {
                 if (this.nextCard) this.nextCard.style.transform = 'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(0.95)'
 
             }
-
         }
-
     }
 
     push() {
 
-        let card = document.createElement('div');
+        let card = document.getElementById('card');
 
         card.classList.add('card');
-
+        
         card.style.backgroundImage = "url('https://placegoat.com/350/350/?random=" + Math.round(Math.random()*100) + "')";
 
         if (this.board.firstChild) {
@@ -185,9 +180,7 @@ class Carousel {
         } else {
             this.board.append(card)
         }
-
     }
-
 }
 
 let board = document.querySelector('#board');

@@ -46,6 +46,12 @@ public class Goat {
     @Enumerated(EnumType.ORDINAL)
     private Gender gender;
 
+    @Enumerated (EnumType.STRING)
+    private Role role;
+
+    @NotNull
+    private boolean enabled;
+
  /*  //Goat_liker relation
     @OneToMany(mappedBy = "goatLiker")
     @OnDelete(action = OnDeleteAction.CASCADE)
