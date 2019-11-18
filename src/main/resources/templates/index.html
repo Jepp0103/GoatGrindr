@@ -25,15 +25,21 @@
     </style>
 </head>
 <body>
-<div id="board"></div>
+
+<div id="board">
+    <div id="card">
+        <span th:utext="'<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>Goat: Name: ' + ${name}  +
+              '<br/> Birthday: ' + ${dob} +
+              '<br/> Short description: ' + ${shortDescription} +
+              '<br/> Long description: ' + ${longDescription} +
+              '<br/> Gender: ' + ${gender}"> Who are you? </span>
+    </div>
+
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
 <script src="carousel.js"></script>
 
-<span th:text="'Goat: Name: ' + ${name} +
-              ', Birthday: ' + ${dob} +
-              ', Short description: ' + ${shortDescription} +
-              ', Long description: ' + ${longDescription} +
-              ', Gender: ' + ${gender}"> Who are you? </span>
+
 <!--
 <ol>
     <li th:each="goat : ${goats}" th:text="${goat}"></li>
