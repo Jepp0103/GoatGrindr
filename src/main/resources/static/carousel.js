@@ -4,6 +4,9 @@ class Carousel {
 
         this.board = element;
 
+        //this.candidates = /*[[${candidates}]]*/ "";
+
+
         // add first two cards programmatically
         this.push();
         this.push();
@@ -31,6 +34,9 @@ class Carousel {
 
             // destroy previous Hammer instance, if present
             if (this.hammer) this.hammer.destroy();
+            if (this.dislikeHammer) this.dislikeHammer.destroy();
+            if (this.likeHammer) this.likeHammer.destroy();
+
 
             // listen for tap and pan gestures on top card
             this.hammer = new Hammer(this.topCard);
@@ -40,7 +46,6 @@ class Carousel {
             // pass events data to custom callbacks
             this.hammer.on('tap', (e) => { this.onTap(e) });
             this.hammer.on('pan', (e) => { this.onPan(e) })
-
         }
     }
 
@@ -125,7 +130,7 @@ class Carousel {
             // check threshold
             if (propX > 0.25 && e.direction == Hammer.DIRECTION_RIGHT) {
                 console.log("To the right....  ");
-                this.liked();
+                //this.liked();
                 location.reload();
                 successful = true;
                 // get right border position
@@ -133,7 +138,7 @@ class Carousel {
 
             } else if (propX < -0.25 && e.direction == Hammer.DIRECTION_LEFT) {
                 console.log("To the left....  ");
-                this.disliked();
+                //this.disliked();
                 location.reload();
                 successful = true;
                 // get left border position
@@ -165,70 +170,21 @@ class Carousel {
         }
     }
 
-    onActionDislike() {
-
-        this.disliked();
-
-        // change the transition property
-        this.topCard.style.transition = 'transform 400ms ease-in';
-        this.nextCard.style.transition = 'transform 400ms ease-in';
-
-        // throw card in the chosen direction
-        let posX = -(this.board.clientWidth + this.topCard.clientWidth);
-        this.topCard.style.transform = 'translateX(' + posX + 'px) translateY(-150px) rotate(-15deg)';
-        if (this.nextCard) this.nextCard.style.transform = 'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1)';
-
-        // wait transition end
-        setTimeout(() => {
-            // remove swiped card
-            this.board.removeChild(this.topCard);
-            // add new card
-            this.push();
-            // handle gestures on new top card
-            this.handle()
-        }, 200);
-
-    }
-
-    onActionLike() {
-
-        this.liked();
-
-        // change the transition property
-        this.topCard.style.transition = 'transform 400ms ease-in';
-        this.nextCard.style.transition = 'transform 400ms ease-in';
-
-        // throw card in the chosen direction
-        let posX = this.board.clientWidth;
-        this.topCard.style.transform = 'translateX(' + posX + 'px) translateY(-150px) rotate(15deg)';
-        if (this.nextCard) this.nextCard.style.transform = 'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1)';
-
-        // wait transition end
-        setTimeout(() => {
-            // remove swiped card
-            this.board.removeChild(this.topCard);
-            // add new card
-            this.push();
-            // handle gestures on new top card
-            this.handle()
-        }, 200);
-
-    }
 
     disliked() {
         this.isFlipped = false;
         let token = $("meta[name='_csrf']").attr("content");
-        let data = {
-            "goatDisliker": this.candidate, //TODO - Set this to be the user.
-            "goatDisliked": this.candidate
+
+        let formData = {
+            goatDisliker: $("#goatDisliker").val(),
+            goatDisliked: $("#goatDisliked").val()
         };
         $.ajax({
-            url: "/api/dislike",
-            headers: {"X-CSRF-TOKEN": token},
-            dataType: "text",
-            type: "post",
+            type: 'POST',
             contentType: "application/json",
-            data: JSON.stringify(data),
+            url: "/api/dislikes",
+            dataType: 'json',
+            data: JSON.stringify(formData),
             success: function() {
                 console.log("Succesfully disliked the goat")
             },
@@ -240,18 +196,19 @@ class Carousel {
 
     liked() {
         this.isFlipped = false;
+
         let token = $("meta[name='_csrf']").attr("content");
-        let data = {
-            "goatLiker": this.candidate, //TODO - Set this to be the user.
-            "goatLiked": this.candidate
+
+        let formData = {
+            goatLiker: $("#goatLiker").val(),
+            goatLiked: $("#goatLiked").val()
         };
         $.ajax({
-            url: "/api/like",
-            headers: {"X-CSRF-TOKEN": token},
-            dataType: "text",
-            type: "post",
+            type: 'POST',
             contentType: "application/json",
-            data: JSON.stringify(data),
+            url: "/api/likes",
+            dataType: 'json',
+            data: JSON.stringify(formData),
             success: function() {
                 console.log("Succesfully liked the goat")
             },
@@ -266,7 +223,7 @@ class Carousel {
         let card = document.getElementById('card');
 
         card.classList.add('card');
-        
+
         card.style.backgroundImage = "url('https://placegoat.com/350/350/?random=" + Math.round(Math.random()*100) + "')";
 
         if (this.board.firstChild) {
@@ -274,7 +231,11 @@ class Carousel {
         } else {
             this.board.append(card)
         }
+
+      /*  // getting the candidate goat
+        this.candidate = this.candidates.pop();*/
     }
+
 }
 
 let board = document.querySelector('#board');
