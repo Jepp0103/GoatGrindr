@@ -15,15 +15,15 @@ import java.util.Random;
 
 @Controller
 public class GoatGrindrViewController {
-    Goat goat;
+    Goat randomGoat;
 
     @Autowired
     GoatRepository goatRepository;
 
     @RequestMapping("/carousel.js")
-    public String findCandidates(Model model) {
-        Iterable<Goat> candidates = goatRepository.findCandidates();
-        model.addAttribute("candidates", candidates);
+    public String findParticipators(Model model) {
+        Iterable<Goat> participators = goatRepository.findParticipators();
+        model.addAttribute("participators", participators);
         return "../static/carousel.js";
     }
 
@@ -38,16 +38,16 @@ public class GoatGrindrViewController {
     }
 
     @GetMapping(value = "/goatgrindr")
-    public String findGoatObject(Model model) {
+    public String findRandomGoat(Model model) {
         Random random = new Random();
         int value = goatRepository.findMaxValue();
-        int randomGoat = random.nextInt(value);
-        goat = goatRepository.findRandomGoat(randomGoat + 1);
-        model.addAttribute("name", goat.getName());
-        model.addAttribute("dob", goat.getDob());
-        model.addAttribute("shortDescription", goat.getShortDescription());
-        model.addAttribute("longDescription", goat.getLongDescription());
-        model.addAttribute("gender", goat.getGender());
+        int randomNumber = random.nextInt(value);
+        randomGoat = goatRepository.findRandomGoat(randomNumber + 1);
+        model.addAttribute("name", randomGoat.getName());
+        model.addAttribute("dob", randomGoat.getDob());
+        model.addAttribute("shortDescription", randomGoat.getShortDescription());
+        model.addAttribute("longDescription", randomGoat.getLongDescription());
+        model.addAttribute("gender", randomGoat.getGender());
         return "index.html";
     }
 

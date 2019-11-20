@@ -4,7 +4,7 @@ class Carousel {
 
         this.board = element;
 
-        this.candidates = /*[[${candidates}]]*/ "";
+        this.participators = /*[[${participators}]]*/ "";
 
 
         // add first two cards programmatically
@@ -130,7 +130,7 @@ class Carousel {
             // check threshold
             if (propX > 0.25 && e.direction == Hammer.DIRECTION_RIGHT) {
                 console.log("To the right....  ");
-                this.liked();
+                this.disliked();
                 location.reload();
                 successful = true;
                 // get right border position
@@ -138,7 +138,7 @@ class Carousel {
 
             } else if (propX < -0.25 && e.direction == Hammer.DIRECTION_LEFT) {
                 console.log("To the left....  ");
-                this.disliked();
+                this.liked();
                 location.reload();
                 successful = true;
                 // get left border position
@@ -172,15 +172,12 @@ class Carousel {
 
 
     disliked() {
-        // this.isFlipped = false;
-        let token = $("meta[name='_csrf']").attr("content");
         let data = {
-            "goatDisliker": this.candidate, //TODO - Set this to be the user.
-            "goatDisliked": this.candidate
+            "goatDisliker": this.participator, //TODO - Set this to be the user.
+            "goatDisliked": this.participator
         };
         $.ajax({
             url: "/api/dislikes",
-            headers: {"X-CSRF-TOKEN": token},
             dataType: "text",
             type: "post",
             contentType: "application/json",
@@ -198,8 +195,8 @@ class Carousel {
         // this.isFlipped = false;
         let token = $("meta[name='_csrf']").attr("content");
         let data = {
-            "goatLiker": this.candidate, //TODO - Set this to be the user.
-            "goatLiked": this.candidate
+            "goatLiker": this.participator, //TODO - Set this to be the user.
+            "goatLiked": this.participator
         };
         $.ajax({
             url: "/api/likes",
@@ -219,8 +216,8 @@ class Carousel {
 
     push() {
 
-        // get candidate goat
-        this.candidate = this.candidates.pop();
+        // getting the participator goat
+        this.participator = this.participators.pop();
 
         let card = document.getElementById('card');
 

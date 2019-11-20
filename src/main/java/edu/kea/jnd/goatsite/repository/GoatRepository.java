@@ -6,10 +6,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
 @Repository
 public interface GoatRepository extends CrudRepository<Goat, Long> {
+
     Iterable<Goat> findAllByName(String name);
     Goat findFirstByName(String name);
 
@@ -26,7 +25,7 @@ public interface GoatRepository extends CrudRepository<Goat, Long> {
     @Query(value = "SELECT MAX(id) FROM goats", nativeQuery = true)
     int findMaxValue();
 
-    @Query(value = "SELECT * FROM Goats g", nativeQuery = true)
-    Iterable<Goat> findCandidates();
+    @Query(value = "SELECT * FROM goats g", nativeQuery = true)
+    Iterable<Goat> findParticipators();
 }
 
