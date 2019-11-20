@@ -42,12 +42,17 @@
 
 
 <h6>-------------------------------------------------------------------------</h6>
-<p th:inline="text">Signed in as: [[${#httpServletRequest.remoteUser}]]!</p>
+<p th:inline="text">Signed in as: [[${#httpServletRequest.remoteUser}]]</p>
+
+<form action = "/updategoat">
+    <button type="submit">Update Goat Profile</button>
+</form>
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Sign Out"/>
+</form>
 <h6>-------------------------------------------------------------------------</h6>
 
+
 <!--aaaa-->
-</form>
 </body>
 </html>

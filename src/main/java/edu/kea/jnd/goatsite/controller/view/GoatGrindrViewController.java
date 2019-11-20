@@ -3,12 +3,12 @@ package edu.kea.jnd.goatsite.controller.view;
 import edu.kea.jnd.goatsite.model.Goat;
 import edu.kea.jnd.goatsite.repository.GoatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Random;
 
 
@@ -44,6 +44,31 @@ public class GoatGrindrViewController {
     }
 
 
+    /*
+
+     @PostMapping(value = "/updategoat")
+    public String updateTheGoat(@ModelAttribute Goat goat) {
+        goatRepository.updateInfo(goat.getGender(),goat.getName(),goat.getPassword(),goat.getShortDescription(),goat.getLongDescription());
+        return "updateGoat.html";
+    }
+
+    */
+
+    @GetMapping(value = "/creategoat")
+    public String createGoatAccount() {
+        return "createGoat.html";
+    }
+
+    @GetMapping(value = "/goatHasBeenCreated")
+    public String backToMain(){
+        return "goatHasBeenCreated.html";
+    }
+
+    @GetMapping(value = "/updategoat")
+    public String changeIdentity(){
+        return "updateGoat.html";
+    }
+
     @PostMapping(value = "/creategoat")
     public String createTheGoat(@ModelAttribute Goat goat) {
         if (goat.getName().length() > 0
@@ -58,14 +83,22 @@ public class GoatGrindrViewController {
         return "createGoat.html";
     }
 
-    @GetMapping(value = "/creategoat")
-    public String createGoatAccount() {
-        return "createGoat.html";
+    @RequestMapping(value = "/updateGoat.html", method = RequestMethod.GET)
+    public String goatprofile(Model model, @AuthenticationPrincipal org.springframework.security.core.userdetails.User user){
+        model.addAttribute("goats", goatRepository.findGoatByUsername(user.getUsername()));
+        return "updateGoat.html";
     }
 
-    @GetMapping(value = "/goatHasBeenCreated")
-    public String backToMain(){
-        return "goatHasBeenCreated.html";
+    @PostMapping("/updatingTheGoat")
+    public String goatprofile(@ModelAttribute Goat goat){
+        Goat goatUpdater = goatRepository.findGoatByUsername(goat.getUsername());
+        goatUpdater.setName(goat.getName());
+        goatUpdater.setPassword(goat.getPassword());
+        goatUpdater.setShortDescription(goat.getShortDescription());
+        goatUpdater.setLongDescription(goat.getLongDescription());
+        goatRepository.save(goatUpdater);
+        System.out.println(goatUpdater);
+        return "index.html";
     }
 
 }

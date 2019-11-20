@@ -11,10 +11,9 @@ import java.util.Optional;
 @Repository
 public interface GoatRepository extends CrudRepository<Goat, Long> {
     Iterable<Goat> findAllByName(String name);
-    Goat findFirstByName(String name);
-
     Iterable<Goat> findAllByGender(Gender gender);
 
+    Goat findFirstByName(String name);
     Goat findGoatByUsername(String username);
 
     @Query(value = "SELECT * FROM Goats g WHERE g.id < 2", nativeQuery = true)
@@ -25,5 +24,12 @@ public interface GoatRepository extends CrudRepository<Goat, Long> {
 
     @Query(value = "SELECT MAX(id) FROM goats", nativeQuery = true)
     int findMaxValue();
+
+    @Query(value = "UPDATE goats set gender = ?, name = ?, password = ?, short_description = ?, long_description = ?", nativeQuery = true)
+    Goat updateInfo(Enum gender, String name, String password, String short_desription, String long_description);
+
+
 }
+
+
 

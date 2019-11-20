@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Change appearance</title>
+</head>
+<body>
+
+<h4>Goat info</h4>
+<p th:inline="text">Current Username: [[${#httpServletRequest.remoteUser}]]</p>
+
+<h4>Update Info</h4>
+
+<p>Update goat info</p>
+<form action ="/updatingTheGoat" method="post">
+    <td><input type="text" name="username" th:value="${goats.username}"></td>
+    <td><input type="text" name="name"  th:value="${goats.name}"></td>
+    <td><input type="text" name="shortDescription" th:value="${goats.shortDescription}"></td>
+    <td><textarea rows="8" cols="80" type="text" name="longDescription" th:text="${goats.longDescription}"></textarea></td>
+    <input type="submit" value="Update info"/>
+
+</form>
+
+</body>
+</html>

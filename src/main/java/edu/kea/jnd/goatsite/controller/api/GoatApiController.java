@@ -4,6 +4,7 @@ import edu.kea.jnd.goatsite.model.Gender;
 import edu.kea.jnd.goatsite.repository.GoatRepository;
 import edu.kea.jnd.goatsite.model.Goat;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -39,7 +40,7 @@ public class GoatApiController {
 
     //Old timers where id < 2
     @GetMapping("/goats/oldtimers")
-    public Iterable<Goat> getOldTimers(){
+    public Iterable<Goat> getOldTimers() {
         return goatRepository.findTheOldTimers();
     }
 
@@ -47,4 +48,12 @@ public class GoatApiController {
     public Goat createGoat(@Valid @RequestBody Goat goat) {
         return goatRepository.save(goat);
     }
+   /*
+    @PostMapping("/goats/update")
+    public Goat updateGoat(@Valid @RequestBody Goat goat) {
+        return goatRepository.save(goat);
+    }
+  */
+
+
 }
