@@ -2,6 +2,7 @@ package edu.kea.jnd.goatsite.controller.view;
 
 import edu.kea.jnd.goatsite.model.Goat;
 import edu.kea.jnd.goatsite.repository.GoatRepository;
+import net.bytebuddy.build.Plugin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.script.*;
 import java.util.Random;
 
 
@@ -23,6 +25,7 @@ public class GoatGrindrViewController {
     @RequestMapping("/carousel.js")
     public String findParticipators(Model model) {
         Iterable<Goat> participators = goatRepository.findParticipators();
+        model.addAttribute("randomGoatId", randomGoat.getId());
         model.addAttribute("participators", participators);
         return "../static/carousel.js";
     }

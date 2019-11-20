@@ -5,6 +5,7 @@ class Carousel {
         this.board = element;
 
         this.participators = /*[[${participators}]]*/ "";
+        this.randomGoatId = /*[[${randomGoatId}]]*/ "";
 
 
         // add first two cards programmatically
@@ -217,7 +218,9 @@ class Carousel {
     push() {
 
         // getting the participator goat
-        this.participator = this.participators.pop();
+        console.log("Randomgoatid: " + this.randomGoatId);
+        this.participator = this.participators.shift(); //shift tager første element i listen, pop tager sidste element i listen!!
+        //Jeg tror vi skal bruge splice . Undersøg det nærmere!
 
         let card = document.getElementById('card');
 
