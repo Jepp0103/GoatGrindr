@@ -4,7 +4,7 @@ class Carousel {
 
         this.board = element;
 
-        //this.candidates = /*[[${candidates}]]*/ "";
+        this.candidates = /*[[${candidates}]]*/ "";
 
 
         // add first two cards programmatically
@@ -130,7 +130,7 @@ class Carousel {
             // check threshold
             if (propX > 0.25 && e.direction == Hammer.DIRECTION_RIGHT) {
                 console.log("To the right....  ");
-                //this.liked();
+                this.liked();
                 location.reload();
                 successful = true;
                 // get right border position
@@ -138,7 +138,7 @@ class Carousel {
 
             } else if (propX < -0.25 && e.direction == Hammer.DIRECTION_LEFT) {
                 console.log("To the left....  ");
-                //this.disliked();
+                this.disliked();
                 location.reload();
                 successful = true;
                 // get left border position
@@ -172,53 +172,55 @@ class Carousel {
 
 
     disliked() {
-        this.isFlipped = false;
+        // this.isFlipped = false;
         let token = $("meta[name='_csrf']").attr("content");
-
-        let formData = {
-            goatDisliker: $("#goatDisliker").val(),
-            goatDisliked: $("#goatDisliked").val()
+        let data = {
+            "goatDisliker": this.candidate, //TODO - Set this to be the user.
+            "goatDisliked": this.candidate
         };
         $.ajax({
-            type: 'POST',
-            contentType: "application/json",
             url: "/api/dislikes",
-            dataType: 'json',
-            data: JSON.stringify(formData),
+            headers: {"X-CSRF-TOKEN": token},
+            dataType: "text",
+            type: "post",
+            contentType: "application/json",
+            data: JSON.stringify(data),
             success: function() {
-                console.log("Succesfully disliked the goat")
+                console.log("Disliking worked")
             },
             error: function() {
-                console.log("Didn't dislike the goat")
+                console.log("Disliking didn't work...")
             }
         });
     }
 
     liked() {
-        this.isFlipped = false;
-
+        // this.isFlipped = false;
         let token = $("meta[name='_csrf']").attr("content");
-
-        let formData = {
-            goatLiker: $("#goatLiker").val(),
-            goatLiked: $("#goatLiked").val()
+        let data = {
+            "goatLiker": this.candidate, //TODO - Set this to be the user.
+            "goatLiked": this.candidate
         };
         $.ajax({
-            type: 'POST',
-            contentType: "application/json",
             url: "/api/likes",
-            dataType: 'json',
-            data: JSON.stringify(formData),
+            headers: {"X-CSRF-TOKEN": token},
+            dataType: "text",
+            type: "post",
+            contentType: "application/json",
+            data: JSON.stringify(data),
             success: function() {
-                console.log("Succesfully liked the goat")
+                console.log("Liking worked")
             },
             error: function() {
-                console.log("Didn't like the goat")
+                console.log("Liking didn't work...")
             }
         });
     }
 
     push() {
+
+        // get candidate goat
+        this.candidate = this.candidates.pop();
 
         let card = document.getElementById('card');
 
@@ -232,8 +234,6 @@ class Carousel {
             this.board.append(card)
         }
 
-      /*  // getting the candidate goat
-        this.candidate = this.candidates.pop();*/
     }
 
 }

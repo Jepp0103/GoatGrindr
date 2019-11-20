@@ -25,5 +25,8 @@ public interface GoatRepository extends CrudRepository<Goat, Long> {
 
     @Query(value = "SELECT MAX(id) FROM goats", nativeQuery = true)
     int findMaxValue();
+
+    @Query(value = "SELECT * FROM Goats g", nativeQuery = true)
+    Iterable<Goat> findCandidates();
 }
 

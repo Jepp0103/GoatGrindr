@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Random;
 
@@ -18,6 +19,13 @@ public class GoatGrindrViewController {
 
     @Autowired
     GoatRepository goatRepository;
+
+    @RequestMapping("/carousel.js")
+    public String findCandidates(Model model) {
+        Iterable<Goat> candidates = goatRepository.findCandidates();
+        model.addAttribute("candidates", candidates);
+        return "../static/carousel.js";
+    }
 
     @GetMapping(value = "/")
     public String getToStartPage() {
