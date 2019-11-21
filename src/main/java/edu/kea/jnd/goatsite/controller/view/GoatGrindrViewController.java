@@ -1,9 +1,12 @@
 package edu.kea.jnd.goatsite.controller.view;
 
+import edu.kea.jnd.goatsite.model.CurrentUser;
 import edu.kea.jnd.goatsite.model.Goat;
 import edu.kea.jnd.goatsite.repository.GoatRepository;
 import net.bytebuddy.build.Plugin;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,16 +19,18 @@ import java.util.Random;
 @Controller
 public class GoatGrindrViewController {
     Goat randomGoatLiked;
-    Goat goatUser;
+    Authentication authentication;
+    Goat currentUser;
 
     @Autowired
     GoatRepository goatRepository;
 
     @RequestMapping("/carousel.js")
     public String findParticipators(Model model) {
-
+        authentication = SecurityContextHolder.getContext().getAuthentication();
+        currentUser = goatRepository.findGoatByUsername(authentication.getName());
         model.addAttribute("randomGoatLiked", randomGoatLiked);
-        model.addAttribute("goatUser", goatUser);
+        model.addAttribute("goatUser", currentUser);
         return "../static/carousel.js";
     }
 
