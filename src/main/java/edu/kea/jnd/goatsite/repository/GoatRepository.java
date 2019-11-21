@@ -1,19 +1,18 @@
 package edu.kea.jnd.goatsite.repository;
 
+import edu.kea.jnd.goatsite.controller.view.GoatGrindrViewController;
 import edu.kea.jnd.goatsite.model.Gender;
 import edu.kea.jnd.goatsite.model.Goat;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
 
 @Repository
 public interface GoatRepository extends CrudRepository<Goat, Long> {
     Iterable<Goat> findAllByName(String name);
     Iterable<Goat> findAllByGender(Gender gender);
 
-    Goat findFirstByName(String name);
     Goat findGoatByUsername(String username);
 
     @Query(value = "SELECT * FROM Goats g WHERE g.id < 2", nativeQuery = true)
@@ -27,9 +26,5 @@ public interface GoatRepository extends CrudRepository<Goat, Long> {
 
     @Query(value = "UPDATE goats set gender = ?, name = ?, password = ?, short_description = ?, long_description = ?", nativeQuery = true)
     Goat updateInfo(Enum gender, String name, String password, String short_desription, String long_description);
-
-
-}
-
 
 

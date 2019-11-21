@@ -47,36 +47,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login").permitAll();
     }
-
-
-
-
-
-/*
-    @Autowired
-    private DataSource datasource;
-
-
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication().dataSource(datasource)
-                .usersByUsernameQuery("SELECT username, password, enabled FROM goats WHERE username=?")
-                .authoritiesByUsernameQuery("SELECT goats.username AS username, " +
-                        "permission.role AS permission FROM goats JOIN permission ON goats.id=" +
-                        "permission.goat_id WHERE goats.username= ?");
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                .antMatchers("/").permitAll()
-                .anyRequest().authenticated()
-                .and().formLogin()
-                .defaultSuccessUrl("/goatgrindr", true);
-    }
-*/
-
 }
 
 

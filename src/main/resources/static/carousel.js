@@ -3,6 +3,9 @@ class Carousel {
     constructor(element) {
 
         this.board = element;
+        this.randomGoatLiked = /*[[${randomGoatLiked}]]*/ "";
+        this.goatUser = /*[[${goatUser}]]*/ "";
+
 
         // add first two cards programmatically
         this.push();
@@ -31,6 +34,9 @@ class Carousel {
 
             // destroy previous Hammer instance, if present
             if (this.hammer) this.hammer.destroy();
+            if (this.dislikeHammer) this.dislikeHammer.destroy();
+            if (this.likeHammer) this.likeHammer.destroy();
+
 
             // listen for tap and pan gestures on top card
             this.hammer = new Hammer(this.topCard);
@@ -40,7 +46,6 @@ class Carousel {
             // pass events data to custom callbacks
             this.hammer.on('tap', (e) => { this.onTap(e) });
             this.hammer.on('pan', (e) => { this.onPan(e) })
-
         }
     }
 
@@ -125,18 +130,16 @@ class Carousel {
             // check threshold
             if (propX > 0.25 && e.direction == Hammer.DIRECTION_RIGHT) {
                 console.log("To the right....  ");
+                this.disliked();
                 location.reload();
-                //console log -> call like API
-
                 successful = true;
                 // get right border position
                 posX = this.board.clientWidth
 
             } else if (propX < -0.25 && e.direction == Hammer.DIRECTION_LEFT) {
                 console.log("To the left....  ");
+                this.liked();
                 location.reload();
-                //console log -> call like API
-
                 successful = true;
                 // get left border position
                 posX = - (this.board.clientWidth + this.topCard.clientWidth)
@@ -167,12 +170,59 @@ class Carousel {
         }
     }
 
+
+    disliked() {
+        let data = {
+            "goatDisliker": this.goatUser, //TODO - Set this to be the user.
+            "goatDisliked": this.randomGoatLiked
+        };
+        $.ajax({
+            url: "/api/dislikes",
+            dataType: "text",
+            type: "post",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function() {
+                console.log("Disliking worked")
+            },
+            error: function() {
+                console.log("Disliking didn't work...")
+            }
+        });
+    }
+
+    liked() {
+        // this.isFlipped = false;
+        let token = $("meta[name='_csrf']").attr("content");
+        let data = {
+            "goatLiker": this.goatUser, //TODO - Set this to be the user.
+            "goatLiked": this.randomGoatLiked
+        };
+        $.ajax({
+            url: "/api/likes",
+            headers: {"X-CSRF-TOKEN": token},
+            dataType: "text",
+            type: "post",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function() {
+                console.log("Liking worked")
+            },
+            error: function() {
+                console.log("Liking didn't work...")
+            }
+        });
+    }
+
     push() {
+
+        // getting the participator goat
+        console.log("Randomgoatid: " +  this.randomGoatLiked);
 
         let card = document.getElementById('card');
 
         card.classList.add('card');
-        
+
         card.style.backgroundImage = "url('https://placegoat.com/350/350/?random=" + Math.round(Math.random()*100) + "')";
 
         if (this.board.firstChild) {
@@ -180,7 +230,9 @@ class Carousel {
         } else {
             this.board.append(card)
         }
+
     }
+
 }
 
 let board = document.querySelector('#board');

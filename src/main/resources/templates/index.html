@@ -1,6 +1,5 @@
 <!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <title>GoatGrindr</title>
@@ -33,12 +32,13 @@
               '<br/> Birthday: ' + ${dob} +
               '<br/> Short description: ' + ${shortDescription} +
               '<br/> Long description: ' + ${longDescription} +
-              '<br/> Gender: ' + ${gender}"> Who are you? </span>
+              '<br/> Gender: ' + ${gender}"></span>
     </div>
 
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
-<script src="carousel.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" th:src="carousel.js"></script>
 
 
 <h6>-------------------------------------------------------------------------</h6>
@@ -51,8 +51,6 @@
     <input type="submit" value="Sign Out"/>
 </form>
 <h6>-------------------------------------------------------------------------</h6>
-
-
-<!--aaaa-->
+</form>
 </body>
 </html>
