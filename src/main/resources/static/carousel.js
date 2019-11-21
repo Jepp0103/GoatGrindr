@@ -3,9 +3,8 @@ class Carousel {
     constructor(element) {
 
         this.board = element;
-
-        this.participators = /*[[${participators}]]*/ "";
-        this.randomGoatId = /*[[${randomGoatId}]]*/ "";
+        this.randomGoatLiked = /*[[${randomGoatLiked}]]*/ "";
+        this.goatUser = /*[[${goatUser}]]*/ "";
 
 
         // add first two cards programmatically
@@ -174,8 +173,8 @@ class Carousel {
 
     disliked() {
         let data = {
-            "goatDisliker": this.participator, //TODO - Set this to be the user.
-            "goatDisliked": this.participator
+            "goatDisliker": this.goatUser, //TODO - Set this to be the user.
+            "goatDisliked": this.randomGoatLiked
         };
         $.ajax({
             url: "/api/dislikes",
@@ -196,8 +195,8 @@ class Carousel {
         // this.isFlipped = false;
         let token = $("meta[name='_csrf']").attr("content");
         let data = {
-            "goatLiker": this.participator, //TODO - Set this to be the user.
-            "goatLiked": this.participator
+            "goatLiker": this.goatUser, //TODO - Set this to be the user.
+            "goatLiked": this.randomGoatLiked
         };
         $.ajax({
             url: "/api/likes",
@@ -218,9 +217,7 @@ class Carousel {
     push() {
 
         // getting the participator goat
-        console.log("Randomgoatid: " + this.randomGoatId);
-        this.participator = this.participators.shift(); //shift tager første element i listen, pop tager sidste element i listen!!
-        //Jeg tror vi skal bruge splice . Undersøg det nærmere!
+        console.log("Randomgoatid: " +  this.randomGoatLiked);
 
         let card = document.getElementById('card');
 

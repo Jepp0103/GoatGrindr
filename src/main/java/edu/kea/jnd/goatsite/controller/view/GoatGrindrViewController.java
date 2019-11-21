@@ -10,23 +10,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.script.*;
 import java.util.Random;
 
 
 @Controller
 public class GoatGrindrViewController {
-    Goat randomGoat;
+    Goat randomGoatLiked;
+    Goat goatUser;
 
     @Autowired
     GoatRepository goatRepository;
 
     @RequestMapping("/carousel.js")
     public String findParticipators(Model model) {
-        Iterable<Goat> participators = goatRepository.findParticipators();
-        model.addAttribute("randomGoatId", randomGoat.getId());
-        model.addAttribute("participators", participators);
+
+        model.addAttribute("randomGoatLiked", randomGoatLiked);
+        model.addAttribute("goatUser", goatUser);
         return "../static/carousel.js";
     }
 
@@ -45,12 +44,12 @@ public class GoatGrindrViewController {
         Random random = new Random();
         int value = goatRepository.findMaxValue();
         int randomNumber = random.nextInt(value);
-        randomGoat = goatRepository.findRandomGoat(randomNumber + 1);
-        model.addAttribute("name", randomGoat.getName());
-        model.addAttribute("dob", randomGoat.getDob());
-        model.addAttribute("shortDescription", randomGoat.getShortDescription());
-        model.addAttribute("longDescription", randomGoat.getLongDescription());
-        model.addAttribute("gender", randomGoat.getGender());
+        randomGoatLiked = goatRepository.findRandomGoat(randomNumber + 1);
+        model.addAttribute("name", randomGoatLiked.getName());
+        model.addAttribute("dob", randomGoatLiked.getDob());
+        model.addAttribute("shortDescription", randomGoatLiked.getShortDescription());
+        model.addAttribute("longDescription", randomGoatLiked.getLongDescription());
+        model.addAttribute("gender", randomGoatLiked.getGender());
         return "index.html";
     }
 
