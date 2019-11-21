@@ -3,32 +3,25 @@
 <head>
     <meta charset="utf-8">
     <title>GoatGrindr</title>
-    <style>
-        #board {
-            width: 100%;
-            height: 100vh;
-            position: relative;
-            overflow: hidden;
-            background-color: rgb(245,247,250);
-        }
-        .card {
-            width: 320px;
-            height: 320px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            border-radius: 1%;
-            box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.1);
-            background-color: white;
-            transform: translateX(-50%) translateY(-50%) scale(0.95);
-        }
-    </style>
+    <link rel="stylesheet" href="/indexStylesheet.css">
 </head>
 <body>
+<!--<div id="header">
 
+</div>-->
+</form>
 <div id="board">
+    <h6>-------------------------------------------------------------------------</h6>
+    <p th:inline="text">Signed in as: [[${#httpServletRequest.remoteUser}]]</p>
+    <form action = "/updategoat">
+        <button type="submit">Update Goat Profile</button>
+    </form>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+    <h6>-------------------------------------------------------------------------</h6>
     <div id="card">
-        <span th:utext="'<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>Goat: Name: ' + ${name}  +
+        <span th:utext="'<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>Goat: Name: ' + ${name}  +
               '<br/> Birthday: ' + ${dob} +
               '<br/> Short description: ' + ${shortDescription} +
               '<br/> Long description: ' + ${longDescription} +
@@ -39,18 +32,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" th:src="carousel.js"></script>
-
-
-<h6>-------------------------------------------------------------------------</h6>
-<p th:inline="text">Signed in as: [[${#httpServletRequest.remoteUser}]]</p>
-
-<form action = "/updategoat">
-    <button type="submit">Update Goat Profile</button>
-</form>
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
-</form>
-<h6>-------------------------------------------------------------------------</h6>
-</form>
 </body>
 </html>
