@@ -26,7 +26,7 @@ public interface GoatRepository extends CrudRepository<Goat, Long> {
     int findMaxValue();
 
     @Query(value = "UPDATE goats set gender = ?, name = ?, password = ?, short_description = ?, long_description = ?", nativeQuery = true)
-    Goat updateInfo(Enum gender, String name, String password, String short_desription, String long_description);
+    Goat updateGoatInfo(Enum gender, String name, String username, String password, String short_description, String long_description);
 
 }
 

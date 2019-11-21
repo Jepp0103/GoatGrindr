@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Change appearance</title>
@@ -7,18 +8,16 @@
 <body>
 
 <h4>Goat info</h4>
-<p th:inline="text">Current Username: [[${#httpServletRequest.remoteUser}]]</p>
+<p th:inline="text">Current username: [[${#httpServletRequest.remoteUser}]]</p>
 
 <h4>Update Info</h4>
-
-<p>Update goat info</p>
-<form action ="/updatingTheGoat" method="post">
-    <td><input type="text" name="username" th:value="${goats.username}"></td>
-    <td><input type="text" name="name"  th:value="${goats.name}"></td>
-    <td><input type="text" name="shortDescription" th:value="${goats.shortDescription}"></td>
-    <td><textarea rows="8" cols="80" type="text" name="longDescription" th:text="${goats.longDescription}"></textarea></td>
+<form action ="/updateGoat" method="post">
+    <td><input type="text" name="username" th:value="${username}"></td>
+    <td><input type="text" name="password" th:value="${password}"></td>
+    <td><input type="text" name="name"  th:value="${name}"></td>
+    <td><input type="text" name="shortDescription" th:value="${shortDescription}"></td>
+    <td><textarea rows="8" cols="80" type="text" name="longDescription" th:text="${longDescription}"></textarea></td>
     <input type="submit" value="Update info"/>
-
 </form>
 
 </body>

@@ -1,22 +1,16 @@
 package edu.kea.jnd.goatsite.controller.view;
-
-import edu.kea.jnd.goatsite.model.CurrentUser;
 import edu.kea.jnd.goatsite.model.Goat;
 import edu.kea.jnd.goatsite.repository.GoatRepository;
-import net.bytebuddy.build.Plugin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.Random;
 
 
@@ -62,28 +56,25 @@ public class GoatGrindrViewController {
         return "index.html";
     }
 
-    /*
-
-     @PostMapping(value = "/updategoat")
-    public String updateTheGoat(@ModelAttribute Goat goat) {
-        goatRepository.updateInfo(goat.getGender(),goat.getName(),goat.getPassword(),goat.getShortDescription(),goat.getLongDescription());
-        return "updateGoat.html";
-    }
-
-    */
-
     @GetMapping(value = "/creategoat")
     public String createGoatAccount() {
         return "createGoat.html";
     }
 
     @GetMapping(value = "/goatHasBeenCreated")
-    public String backToMain(){
+    public String backToMain() {
         return "goatHasBeenCreated.html";
     }
 
     @GetMapping(value = "/updategoat")
-    public String changeIdentity(){
+    public String changeIdentity(Model model) {
+        authentication = SecurityContextHolder.getContext().getAuthentication();
+        currentUser = goatRepository.findGoatByUsername(authentication.getName());
+        model.addAttribute("username", currentUser.getUsername());
+        model.addAttribute("password", currentUser.getPassword());
+        model.addAttribute("name", currentUser.getName());
+        model.addAttribute("shortDescription", currentUser.getShortDescription());
+        model.addAttribute("longDescription", currentUser.getLongDescription());
         return "updateGoat.html";
     }
 
@@ -101,22 +92,48 @@ public class GoatGrindrViewController {
         return "createGoat.html";
     }
 
-    @RequestMapping(value = "/updateGoat.html", method = RequestMethod.GET)
-    public String goatprofile(Model model, @AuthenticationPrincipal org.springframework.security.core.userdetails.User user) {
-        model.addAttribute("goats", goatRepository.findGoatByUsername(user.getUsername()));
+    @PostMapping("/updateGoat")
+    public String goatprofile(@ModelAttribute Goat goat) {
+        if (goat.getName().length() > 0
+                && goat.getDob() != null
+                && goat.getPassword().length() > 0
+                && goat.getUsername().length() > 0
+                && goat.getUsername().contains("@")
+                && goat.getUsername().contains("mail")) {
+            authentication = SecurityContextHolder.getContext().getAuthentication();
+            currentUser = goatRepository.findGoatByUsername(authentication.getName());
+            goatRepository.updateGoatInfo(
+                    currentUser.getGender(),
+                    currentUser.getName(),
+                    currentUser.getUsername(),
+                    currentUser.getPassword(),
+                    currentUser.getShortDescription(),
+                    currentUser.getLongDescription()
+                    );
+            /*currentUser.setName(goat.getName());
+            currentUser.setPassword(goat.getPassword());
+            currentUser.setShortDescription(goat.getShortDescription());
+            currentUser.setLongDescription(goat.getLongDescription());*/
+//            goatRepository.save(currentUser);
+        }
+        System.out.println(currentUser.toString());
         return "updateGoat.html";
-
     }
 
-/*
-    @RequestMapping(value = "/updateGoat", method = RequestMethod.GET)
-    public String goatprofile(Model model, @AuthenticationPrincipal org.springframework.security.core.userdetails.User user){
-        model.addAttribute("goats", goatRepository.findGoatByUsername(user.getUsername()));
-        return "updateGoat.html";
-    }
+    /*    @RequestMapping("/carousel.js")
+    public String findParticipators(Model model) {
+        authentication = SecurityContextHolder.getContext().getAuthentication();
+        currentUser = goatRepository.findGoatByUsername(authentication.getName());
+        model.addAttribute("randomGoatLiked", randomGoatLiked);
+        model.addAttribute("goatUser", currentUser);
+        return "../static/carousel.js";
+    }*/
 
-    @PostMapping("/updatingTheGoat")
-    public String goatprofile(@ModelAttribute Goat goat){
+    //OLD VERSION
+    /*    @PutMapping("/updateGoat")
+    public String goatprofile(@ModelAttribute Goat goat) {
+        authentication = SecurityContextHolder.getContext().getAuthentication();
+        currentUser = goatRepository.findGoatByUsername(authentication.getName());
         Goat goatUpdater = goatRepository.findGoatByUsername(goat.getUsername());
         goatUpdater.setName(goat.getName());
         goatUpdater.setPassword(goat.getPassword());
@@ -125,6 +142,5 @@ public class GoatGrindrViewController {
         goatRepository.save(goatUpdater);
         System.out.println(goatUpdater);
         return "index.html";
-    */
-
+    }*/
 }
