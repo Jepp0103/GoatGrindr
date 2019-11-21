@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:security="http://www.springframework.org/schema/security">
 <head>
     <title>Log into GoatGrindr</title>
 </head>
@@ -16,7 +17,8 @@
     You have logged in succesfully
 </div>
 <form th:action="@{/login}" method='post'>
-    <div><label> Username : <input type='text' name='username'/> </label></div>
+    <div><label> Username: <input type='text' name='username'/> </label></div>
+    <br>
     <div><label> Password: <input type='password' name='password'/> </label></div>
     <div><input type="submit" value="Sign in"/></div>
 </form>
@@ -26,17 +28,22 @@
 <h6>---------------------------------------------------------------------------------------</h6>
 <h5>Already signed in?</h5>
 <div>
-    <form action = "/goatgrindr">
+    <form action="/goatgrindr">
         <button type="submit">Proceed to GoatGrindr</button>
     </form>
 </div>
 <h6>---------------------------------------------------------------------------------------</h6>
 <h5>Not registered yet?</h5>
 <div>
-    <form action = "/creategoat">
+    <form action="/creategoat">
         <button type="submit">Create a new goat!</button>
     </form>
 </div>
 <h6>---------------------------------------------------------------------------------------</h6>
+<div>
+    <img src="c:url" value="/resources/img/goat.jpg"/>"/>
+</div>
+   <link rel="stylesheet" href="/generalStylesheet.css">
+
 </body>
 </html>

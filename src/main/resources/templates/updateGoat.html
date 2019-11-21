@@ -3,20 +3,47 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Change appearance</title>
+    <title>Update goat</title>
+    <link rel="stylesheet" href="/generalStylesheet.css">
 </head>
 <body>
 
-<h4>Goat info</h4>
+<h1> Update Goat info</h1>
+
 <p th:inline="text">Current username: [[${#httpServletRequest.remoteUser}]]</p>
 
-<h4>Update Info</h4>
-<form action ="/updateGoat" method="post">
-    <td><input type="text" name="username" th:value="${username}"></td>
-    <td><input type="text" name="password" th:value="${password}"></td>
-    <td><input type="text" name="name"  th:value="${name}"></td>
-    <td><input type="text" name="shortDescription" th:value="${shortDescription}"></td>
-    <td><textarea rows="8" cols="80" type="text" name="longDescription" th:text="${longDescription}"></textarea></td>
+<form action="/updateGoat" method="post">
+    <td>
+        <label>Username: </label>
+        <input type="text" name="username" th:value="${username}">
+    </td>
+    <br/>
+    <br/>
+    <td>
+        <label>Password:     </label>
+        <input type="text" name="password" th:value="${password}">
+    </td>
+    <br/>
+    <br/>
+    <td>
+        <label>Name: </label>
+        <input type="text" name="name" th:value="${name}">
+    </td>
+    <br/>
+    <br/>
+    <td>
+        <label>Short description: </label>
+        <input type="text" name="shortDescription" th:value="${shortDescription}">
+    </td>
+    <br/>
+    <br/>
+    <td>
+        <label>Long description: </label>
+        <br/>
+        <textarea rows="8" cols="80" type="text" name="longDescription" th:text="${longDescription}"></textarea>
+    </td>
+    <br/>
+    <br/>
     <input type="submit" value="Update info"/>
 </form>
 

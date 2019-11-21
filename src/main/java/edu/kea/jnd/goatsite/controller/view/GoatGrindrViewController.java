@@ -102,19 +102,18 @@ public class GoatGrindrViewController {
                 && goat.getUsername().contains("mail")) {
             authentication = SecurityContextHolder.getContext().getAuthentication();
             currentUser = goatRepository.findGoatByUsername(authentication.getName());
-            goatRepository.updateGoatInfo(
+            //currentUser.setParamForUpdate(authentication.getParamForUpdate());
+
+
+
+            /*goatRepository.updateGoatInfo(
                     currentUser.getGender(),
                     currentUser.getName(),
                     currentUser.getUsername(),
                     currentUser.getPassword(),
                     currentUser.getShortDescription(),
                     currentUser.getLongDescription()
-                    );
-            /*currentUser.setName(goat.getName());
-            currentUser.setPassword(goat.getPassword());
-            currentUser.setShortDescription(goat.getShortDescription());
-            currentUser.setLongDescription(goat.getLongDescription());*/
-//            goatRepository.save(currentUser);
+                    );*/
         }
         System.out.println(currentUser.toString());
         return "updateGoat.html";
