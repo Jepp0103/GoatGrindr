@@ -44,7 +44,7 @@ public class GoatGrindrViewController {
     }
 
     @GetMapping(value = "/login")
-    public String getToLogin(){
+    public String getToLogin() {
         return "loginPage.html";
     }
 
@@ -61,7 +61,6 @@ public class GoatGrindrViewController {
         model.addAttribute("gender", randomGoatLiked.getGender());
         return "index.html";
     }
-
 
     /*
 
@@ -103,6 +102,14 @@ public class GoatGrindrViewController {
     }
 
     @RequestMapping(value = "/updateGoat.html", method = RequestMethod.GET)
+    public String goatprofile(Model model, @AuthenticationPrincipal org.springframework.security.core.userdetails.User user) {
+        model.addAttribute("goats", goatRepository.findGoatByUsername(user.getUsername()));
+        return "updateGoat.html";
+
+    }
+
+/*
+    @RequestMapping(value = "/updateGoat", method = RequestMethod.GET)
     public String goatprofile(Model model, @AuthenticationPrincipal org.springframework.security.core.userdetails.User user){
         model.addAttribute("goats", goatRepository.findGoatByUsername(user.getUsername()));
         return "updateGoat.html";
@@ -118,6 +125,6 @@ public class GoatGrindrViewController {
         goatRepository.save(goatUpdater);
         System.out.println(goatUpdater);
         return "index.html";
-    }
+    */
 
 }
