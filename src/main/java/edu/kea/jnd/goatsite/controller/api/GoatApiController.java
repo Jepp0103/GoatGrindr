@@ -48,12 +48,4 @@ public class GoatApiController {
     public Goat createGoat(@Valid @RequestBody Goat goat) {
         return goatRepository.save(goat);
     }
-   /*
-    @PostMapping("/goats/update")
-    public Goat updateGoat(@Valid @RequestBody Goat goat) {
-        return goatRepository.save(goat);
-    }
-  */
-
-
 }

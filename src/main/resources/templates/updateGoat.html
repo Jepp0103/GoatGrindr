@@ -10,9 +10,19 @@
 
 <h1> Update Goat info</h1>
 
-<p th:inline="text">Current username: [[${#httpServletRequest.remoteUser}]]</p>
-
 <form action="/updateGoat" method="post">
+    <td>
+        <label>Date of birth: </label>
+        <input type="text" name="dob" th:value="${dob}">
+    </td>
+    <br/>
+    <br/>
+    <td>
+        <label>Gender: </label>
+        <input type="text" name="gender" th:value="${gender}">
+    </td>
+    <br/>
+    <br/>
     <td>
         <label>Username: </label>
         <input type="text" name="username" th:value="${username}">
@@ -20,7 +30,7 @@
     <br/>
     <br/>
     <td>
-        <label>Password:     </label>
+        <label>Password: </label>
         <input type="text" name="password" th:value="${password}">
     </td>
     <br/>
