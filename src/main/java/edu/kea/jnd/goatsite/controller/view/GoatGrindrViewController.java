@@ -141,5 +141,6 @@ public class GoatGrindrViewController {
         goatRepository.save(goatUpdater);
         System.out.println(goatUpdater);
         return "index.html";
-    }*/
+    */
+
 }
