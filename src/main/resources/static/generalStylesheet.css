@@ -8,7 +8,7 @@ h5 {
     font-family: "Comic Sans MS";
 }
 
-label {
+label, p, button, input, span {
     font-size: 15px;
     font-family: "Comic Sans MS";
 }
