@@ -1,0 +1,61 @@
+h1 {
+    font-size: 30px;
+    font-family: "Comic Sans MS";
+}
+
+h5 {
+    font-size: 20px;
+    font-family: "Comic Sans MS";
+}
+
+label {
+    font-size: 15px;
+    font-family: "Comic Sans MS";
+}
+
+div.text {
+    margin: 0;
+    padding: 0;
+}
+
+div.text label {
+    font-family: "Comic Sans MS";
+    margin: 0;
+    padding: 0;
+    display: block;
+    font-size: 100%;
+    padding-top: .1em;
+    width: 9.0em;
+    text-align: left;
+    float: left;
+}
+
+div.text input,
+div.text textarea {
+    margin: 0;
+    padding: 0;
+    display: block;
+    font-size: 100%;
+    font-family: "Comic Sans MS";
+}
+
+div.text input {
+    margin-left: 10px;
+}
+
+input:active,
+input:focus,
+input:hover,
+textarea:active,
+textarea:focus,
+textarea:hover {
+}
+
+.UpdatePageGoat {
+    position: absolute;
+    right: 390px;
+    top: 110px;
+    width: 625px;
+    height: 417px;
+    padding-left: 1px;
+}

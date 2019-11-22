@@ -135,28 +135,4 @@ public class ViewController {
         return "loginPage.html";
     }
 
-    /*    @RequestMapping("/carousel.js")
-    public String findParticipators(Model model) {
-        authentication = SecurityContextHolder.getContext().getAuthentication();
-        currentUser = goatRepository.findGoatByUsername(authentication.getName());
-        model.addAttribute("randomGoatLiked", randomGoatLiked);
-        model.addAttribute("goatUser", currentUser);
-        return "../static/carousel.js";
-    }*/
-
-    //OLD VERSION
-    /*    @PutMapping("/updateGoat")
-    public String goatprofile(@ModelAttribute Goat goat) {
-        authentication = SecurityContextHolder.getContext().getAuthentication();
-        currentUser = goatRepository.findGoatByUsername(authentication.getName());
-        Goat goatUpdater = goatRepository.findGoatByUsername(goat.getUsername());
-        goatUpdater.setName(goat.getName());
-        goatUpdater.setPassword(goat.getPassword());
-        goatUpdater.setShortDescription(goat.getShortDescription());
-        goatUpdater.setLongDescription(goat.getLongDescription());
-        goatRepository.save(goatUpdater);
-        System.out.println(goatUpdater);
-        return "index.html";
-    */
-
 }
