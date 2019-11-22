@@ -4,58 +4,160 @@
 <head>
     <meta charset="UTF-8">
     <title>Update goat</title>
+    <link rel="stylesheet" type="text/css" href="updateGoat.css">
     <link rel="stylesheet" href="/generalStylesheet.css">
 </head>
-<body>
+<body bgcolor="#fff8dc">
 
-<h1> Update Goat info</h1>
+<h1> Update Goat info <img src="https://i.imgur.com/c7DBrec.jpg" class="UpdatePageGoat"></h1>
 
 <form action="/updateGoat" method="post">
     <td>
-        <label>Date of birth: </label>
-        <input type="text" name="dob" th:value="${dob}">
+        <div class="text">
+        <label for="DateOfBirth">Date of birth: </label>
+        <input type="text" name="dob" th:value="${dob}" id="DateOfBirth">
+        </div>
+
     </td>
+
     <br/>
     <br/>
     <td>
-        <label>Gender: </label>
-        <input type="text" name="gender" th:value="${gender}">
+        <div class="text">
+        <label for="Gender">Gender: </label>
+        <input type="text" name="gender" th:value="${gender}" id="Gender">
+        </div>
+
     </td>
+
     <br/>
     <br/>
     <td>
-        <label>Username: </label>
-        <input type="text" name="username" th:value="${username}">
+        <div class="text">
+        <label for="Username">Username: </label>
+        <input type="text" name="username" th:value="${username}" id="Username">
+        </div>
+
     </td>
+
     <br/>
     <br/>
     <td>
-        <label>Password: </label>
-        <input type="text" name="password" th:value="${password}">
+        <div class="text">
+        <label for="Password">Password: </label>
+        <input type="text" name="password" th:value="${password}" id="Password">
+        </div>
+
     </td>
+
     <br/>
     <br/>
     <td>
-        <label>Name: </label>
-        <input type="text" name="name" th:value="${name}">
+        <div class="text">
+        <label for="Name">Name: </label>
+        <input type="text" name="name" th:value="${name}" id="Name">
+        </div>
+
     </td>
+
     <br/>
     <br/>
     <td>
-        <label>Short description: </label>
-        <input type="text" name="shortDescription" th:value="${shortDescription}">
+        <div class="text">
+        <label for="ShortDescription">Short description: </label>
+        <input type="text" name="shortDescription" th:value="${shortDescription}" id="ShortDescription">
+        </div>
+
     </td>
+
     <br/>
     <br/>
     <td>
-        <label>Long description: </label>
+        <div class="text">
+        <label for="LongDescription">Long description: </label>
+
         <br/>
-        <textarea rows="8" cols="80" type="text" name="longDescription" th:text="${longDescription}"></textarea>
+        <textarea rows="8" cols="80" type="text" name="longDescription" id="LongDescription" th:text="${longDescription}" ></textarea>
+        </div>
     </td>
+
+
     <br/>
     <br/>
     <input type="submit" value="Update info"/>
+
+
 </form>
 
 </body>
+
+<style>
+    h1 {
+        font-size: 30px;
+        font-family: "Comic Sans MS";
+    }
+
+    h5 {
+        font-size: 20px;
+        font-family: "Comic Sans MS";
+    }
+
+    label {
+        font-size: 15px;
+        font-family: "Comic Sans MS";
+    }
+
+    div.text {
+        margin: 0;
+        padding: 0;
+    }
+
+    div.text label {
+        font-family: "Comic Sans MS";
+        margin: 0;
+        padding: 0;
+        display: block;
+        font-size: 100%;
+        padding-top: .1em;
+        width: 9.0em;
+        text-align: left;
+        float: left;
+    }
+
+    div.text input,
+    div.text textarea {
+        margin: 0;
+        padding: 0;
+        display: block;
+        font-size: 100%;
+        font-family: "Comic Sans MS";
+    }
+
+    div.text input {
+        margin-left: 10px;
+    }
+
+    input:active,
+    input:focus,
+    input:hover,
+    textarea:active,
+    textarea:focus,
+    textarea:hover {
+    }
+
+    .UpdatePageGoat {
+        position: absolute;
+        right: 390px;
+        top: 30px;
+        width: 625px;
+        height: 417px;
+        padding-left: 1px;
+    }
+
+    input {
+        font-family: "Comic Sans MS";
+    }
+
+</style>
+
 </html>

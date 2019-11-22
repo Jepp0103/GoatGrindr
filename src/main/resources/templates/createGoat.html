@@ -4,6 +4,72 @@
     <meta charset="UTF-8">
     <title>How goats are made</title>
 </head>
+<body bgcolor="#fff8dc">
+
+<h1> Fill out info below to begin the process of creating the goat <img src="https://i.imgur.com/VLmqkTr.jpg" class="creationPageGoat"></h1>
+
+<form action="/creategoat" method="post">
+
+        <div class="text">
+    <label for="username"> Username:</label>
+    <input type="text" name="username" id="username"/>
+        </div>
+        <br>
+    <br>
+        <div class="text">
+    <label for="password">Password: </label>
+    <input type="text" name="password" id="password"/>
+       </div>
+       <br>
+    <br>
+        <div class="text">
+    <label for="goatName">Goat name: </label>
+    <input type="text" name="name" id="goatName"/>
+        </div>
+        <br>
+    <br>
+        <div class="text">
+    <label for="DateOfBirth">Date of birth: </label>
+    <input type="text" name="dob" id="DateOfBirth"/>
+        </div>
+        <br>
+    <br>
+        <div class="text">
+    <label for="shortDescription">Short description: </label>
+    <input type="text" name="shortDescription" id="shortDescription"/>
+        </div>
+        <br>
+    <br>
+
+        <div class="text">
+    <label for="longDescription">Long description: </label>
+    <input type="text" name="longDescription" id="longDescription"/>
+        </div>
+        <br>
+    <br>
+
+        <div class="text">
+    <label for="Gender" >Gender: </label>
+    <input type="text" name="gender" id="Gender"/>
+        </div>
+        <br>
+    <br>
+        <div class="text">
+    <label for="Role">Role: </label>
+    <input type="text" name="role" id="Role"/>
+        </div>
+        <br>
+
+
+    <div>
+        <input type="submit" value="Create the account"/>
+    </div>
+
+</form>
+
+
+
+</body>
 <style>
     h1 {
         font-size: 30px;
@@ -19,41 +85,58 @@
         font-size: 15px;
         font-family: "Comic Sans MS";
     }
+
+    div.text {
+        margin: 0;
+        padding: 0;
+    }
+
+    div.text label {
+        font-family: "Comic Sans MS";
+        margin: 0;
+        padding: 0;
+        display: block;
+        font-size: 100%;
+        padding-top: .1em;
+        width: 9.0em;
+        text-align: left;
+        float: left;
+    }
+
+    div.text input,
+    div.text textarea {
+        margin: 0;
+        padding: 0;
+        display: block;
+        font-size: 100%;
+        font-family: "Comic Sans MS";
+    }
+
+    div.text input {
+        margin-left: 10px;
+    }
+
+    input:active,
+    input:focus,
+    input:hover,
+    textarea:active,
+    textarea:focus,
+    textarea:hover {
+    }
+
+    .creationPageGoat {
+        position: absolute;
+        right: 390px;
+        top: 110px;
+        width: 625px;
+        height: 417px;
+        padding-left: 1px;
+    }
+
+    input[type="submit"] {
+        font-family: "Comic Sans MS";
+    }
+
+
 </style>
-<body>
-
-<h1> Fill out info below to begin the process of creating the goat </h1>
-<form action="/creategoat" method="post">
-    <label>Username: </label>
-    <input type="text" name="username"/>
-    <br>
-    <label>Password: </label>
-    <input type="text" name="password"/>
-    <br>
-    <label>Goat name: </label>
-    <input type="text" name="name"/>
-    <br>
-    <label>Date of birth: </label>
-    <input type="text" name="dob"/>
-    <br>
-    <label>Short description: </label>
-    <input type="text" name="shortDescription"/>
-    <br>
-    <label>Long description: </label>
-    <input type="text" name="longDescription"/>
-    <br>
-    <label>Gender: </label>
-    <input type="text" name="gender"/>
-    <br>
-    <label>Role: </label>
-    <input type="text" name="role"/>
-    <br>
-    <div>
-        <input type="submit" value="Create the account"/>
-    </div>
-</form>
-
-
-
-</body>
 </html>

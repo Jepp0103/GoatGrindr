@@ -134,4 +134,5 @@ public class ViewController {
         System.out.println(currentUser.toString());
         return "loginPage.html";
     }
+
 }
