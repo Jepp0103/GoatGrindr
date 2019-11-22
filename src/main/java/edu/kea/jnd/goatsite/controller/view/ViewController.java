@@ -1,27 +1,32 @@
 package edu.kea.jnd.goatsite.controller.view;
+
 import edu.kea.jnd.goatsite.model.Goat;
 import edu.kea.jnd.goatsite.repository.GoatRepository;
+import edu.kea.jnd.goatsite.repository.LikeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 
 @Controller
-public class GoatGrindrViewController {
+public class ViewController {
     Goat randomGoatLiked;
     Authentication authentication;
     Goat currentUser;
 
     @Autowired
     GoatRepository goatRepository;
+
+    @Autowired
+    LikeRepository likeRepository;
+
 
     @RequestMapping("/carousel.js")
     public String findParticipators(Model model) {
@@ -44,10 +49,21 @@ public class GoatGrindrViewController {
 
     @GetMapping(value = "/goatgrindr")
     public String findRandomGoat(Model model) {
+        authentication = SecurityContextHolder.getContext().getAuthentication();
+        currentUser = goatRepository.findGoatByUsername(authentication.getName());
+        likeRepository.findAllLikedGoats(currentUser.getId());
+        System.out.println("Liked goats from user: " + likeRepository.findAllLikedGoats(currentUser.getId()));
+        Iterable<Long> likedGoats = likeRepository.findAllLikedGoats(currentUser.getId());
+
+        System.out.println("Liked goat list ");
+
         Random random = new Random();
         int value = goatRepository.findMaxValue();
-        int randomNumber = random.nextInt(value);
-        randomGoatLiked = goatRepository.findRandomGoat(randomNumber + 1);
+//        while (true) {
+            int randomNumber = random.nextInt(value);
+            randomGoatLiked = goatRepository.findRandomGoat(randomNumber + 1);
+//            if (likeRepository.findAllLikedGoats(currentUser.getId().(randomGoatLiked))
+//        }
         model.addAttribute("name", randomGoatLiked.getName());
         model.addAttribute("dob", randomGoatLiked.getDob());
         model.addAttribute("shortDescription", randomGoatLiked.getShortDescription());
@@ -67,9 +83,11 @@ public class GoatGrindrViewController {
     }
 
     @GetMapping(value = "/updategoat")
-    public String changeIdentity(Model model) {
+    public String getUpdateGoat(Model model) {
         authentication = SecurityContextHolder.getContext().getAuthentication();
         currentUser = goatRepository.findGoatByUsername(authentication.getName());
+        model.addAttribute("dob", currentUser.getDob());
+        model.addAttribute("gender", currentUser.getGender());
         model.addAttribute("username", currentUser.getUsername());
         model.addAttribute("password", currentUser.getPassword());
         model.addAttribute("name", currentUser.getName());
@@ -93,7 +111,7 @@ public class GoatGrindrViewController {
     }
 
     @PostMapping("/updateGoat")
-    public String goatprofile(@ModelAttribute Goat goat) {
+    public String updateGoatProfile(@ModelAttribute Goat goat, Model model) {
         if (goat.getName().length() > 0
                 && goat.getDob() != null
                 && goat.getPassword().length() > 0
@@ -102,21 +120,19 @@ public class GoatGrindrViewController {
                 && goat.getUsername().contains("mail")) {
             authentication = SecurityContextHolder.getContext().getAuthentication();
             currentUser = goatRepository.findGoatByUsername(authentication.getName());
-            //currentUser.setParamForUpdate(authentication.getParamForUpdate());
-
-
-
-            /*goatRepository.updateGoatInfo(
-                    currentUser.getGender(),
-                    currentUser.getName(),
-                    currentUser.getUsername(),
-                    currentUser.getPassword(),
-                    currentUser.getShortDescription(),
-                    currentUser.getLongDescription()
-                    );*/
+            currentUser.setDob(goat.getDob());
+            currentUser.setGender(goat.getGender());
+            currentUser.setName(goat.getName());
+            currentUser.setUsername(goat.getUsername());
+            currentUser.setPassword(goat.getPassword());
+            currentUser.setShortDescription(goat.getShortDescription());
+            currentUser.setLongDescription(goat.getLongDescription());
         }
+
+        goatRepository.save(currentUser);
+
         System.out.println(currentUser.toString());
-        return "updateGoat.html";
+        return "loginPage.html";
     }
 
     /*    @RequestMapping("/carousel.js")

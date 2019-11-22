@@ -1,25 +1,35 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-      xmlns:security="http://www.springframework.org/schema/security">
+      xmlns:security="http://www.springframework.org/schema/security" xmlns:id="http://www.w3.org/1999/xhtml"
+      xmlns:position="http://www.w3.org/1999/xhtml">
 <head>
     <title>Log into GoatGrindr</title>
 </head>
-<body>
-<h1>Welcome To GoatGrindr!!!</h1>
-<div th:if="${param.error}">
-    Invalid username and password.
-</div>
-<div th:if="${param.logout}">
-    You have been logged out.
-</div>
-<div th:if="${param.login}">
-    You have logged in succesfully
+<body bgcolor="#87cefa">
+<h1>Welcome To GoatGrindr!!! <img src="https://i.imgur.com/WEhgyam.jpg" class="frontPageGoat"></h1>
+<div class="security">
+    <div th:if="${param.error}">
+        Invalid username and password.
+    </div>
+    <div th:if="${param.logout}">
+        You have been logged out.
+    </div>
+    <div th:if="${param.login}">
+        You have logged in succesfully
+    </div>
 </div>
 <form th:action="@{/login}" method='post'>
-    <div><label> Username: <input type='text' name='username'/> </label></div>
+    <div class="text">
+        <label for="username"> Username:</label>
+        <input type='text' name='username' id="username"/>
+    </div>
     <br>
-    <div><label> Password: <input type='password' name='password'/> </label></div>
+    <div class="text">
+        <label for="password"> Password:</label>
+        <input type='password' name='password' id="password"/>
+    </div>
+    <br>
     <div><input type="submit" value="Sign in"/></div>
 </form>
 
@@ -31,6 +41,10 @@
     <form action="/goatgrindr">
         <button type="submit">Proceed to GoatGrindr</button>
     </form>
+    <br>
+    <form action="/updategoat">
+        <button type="submit">Update goat</button>
+    </form>
 </div>
 <h6>---------------------------------------------------------------------------------------</h6>
 <h5>Not registered yet?</h5>
@@ -40,10 +54,70 @@
     </form>
 </div>
 <h6>---------------------------------------------------------------------------------------</h6>
-<div>
-    <img src="c:url" value="/resources/img/goat.jpg"/>"/>
-</div>
-   <!–– <link rel="stylesheet" href="/generalStylesheet.css"> -->
 
+<style>
+    h1 {
+        font-size: 30px;
+        font-family: "Comic Sans MS";
+    }
+
+    h5 {
+        font-size: 20px;
+        font-family: "Comic Sans MS";
+        padding-bottom: -10px;
+    }
+
+    div.text {
+        margin: 0;
+        padding: 0;
+    }
+
+    div.text label {
+        font-family: "Comic Sans MS";
+        margin: 0;
+        padding: 0;
+        display: block;
+        font-size: 100%;
+        padding-top: .1em;
+        width: 5.5em;
+        text-align: left;
+        float: left;
+    }
+
+    div.text input,
+    div.text textarea {
+        margin: 0;
+        padding: 0;
+        display: block;
+        font-size: 100%;
+        font-family: "Comic Sans MS";
+    }
+
+    div.text input {
+        margin-left: 10px;
+    }
+
+
+    input:active,
+    input:focus,
+    input:hover,
+    textarea:active,
+    textarea:focus,
+    textarea:hover {
+    }
+
+    .frontPageGoat {
+        position: absolute;
+        right: auto;
+        top: 30px;
+        width: 900px;
+        height: 600px;
+        padding-left: 30px;
+    }
+
+    .security, button, input {
+        font-family: "Comic Sans MS";
+    }
+</style>
 </body>
 </html>

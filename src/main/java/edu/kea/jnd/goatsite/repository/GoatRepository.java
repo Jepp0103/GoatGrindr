@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-
 @Repository
 public interface GoatRepository extends CrudRepository<Goat, Long> {
     Iterable<Goat> findAllByName(String name);
@@ -24,10 +23,6 @@ public interface GoatRepository extends CrudRepository<Goat, Long> {
 
     @Query(value = "SELECT MAX(id) FROM goats", nativeQuery = true)
     int findMaxValue();
-
-    @Query(value = "UPDATE goats set gender = ?, name = ?, password = ?, short_description = ?, long_description = ?", nativeQuery = true)
-    Goat updateGoatInfo(Enum gender, String name, String username, String password, String short_description, String long_description);
-
 }
 
 
