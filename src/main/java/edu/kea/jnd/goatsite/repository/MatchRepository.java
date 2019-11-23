@@ -15,7 +15,6 @@ public interface MatchRepository extends CrudRepository<Match, Long> {
                    " AND SELECT * FROM matches m WHERE m.goat2Id = ?1", nativeQuery = true)
     Iterable<Match> findAllByGoatId(Long id);
 
-    /*@Query(value = "SELECT * FROM Goats g WHERE g.id < 2", nativeQuery = true)
-    Iterable<Goat> findTheOldTimers();*/
+
 
 }

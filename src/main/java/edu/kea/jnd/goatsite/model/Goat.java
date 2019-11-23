@@ -27,7 +27,7 @@ public class Goat {
 
     @NotNull
     @Past
-    @DateTimeFormat(pattern = "dd.MM.yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dob;
 
     @Length(max = 500)

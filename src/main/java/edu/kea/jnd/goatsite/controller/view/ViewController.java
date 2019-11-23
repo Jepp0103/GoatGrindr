@@ -11,9 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.Random;
 
 import static edu.kea.jnd.goatsite.model.Gender.FEMALE;
@@ -42,6 +40,11 @@ public class ViewController {
         return "../static/carousel.js";
     }
 
+    @GetMapping(value = "/matches")
+    public String getMatches(){
+        return "matches.html";
+    }
+
     @GetMapping(value = "/")
     public String getToStartPage() {
         return "loginPage.html";
@@ -57,18 +60,10 @@ public class ViewController {
         authentication = SecurityContextHolder.getContext().getAuthentication();
         currentUser = goatRepository.findGoatByUsername(authentication.getName());
         likeRepository.findAllLikedGoats(currentUser.getId());
-//        System.out.println("Liked goats from user: " + likeRepository.findAllLikedGoats(currentUser.getId()));
-//        Iterable<Long> likedGoats = likeRepository.findAllLikedGoats(currentUser.getId());
-//
-//        System.out.println("Liked goat list ");
-
         Random random = new Random();
         int value = goatRepository.findMaxValue();
-//        while (true) {
             int randomNumber = random.nextInt(value);
             randomGoatLiked = goatRepository.findRandomGoat(randomNumber + 1);
-//            if (likeRepository.findAllLikedGoats(currentUser.getId().(randomGoatLiked))
-//        }
         model.addAttribute("name", randomGoatLiked.getName());
         model.addAttribute("dob", randomGoatLiked.getDob());
         model.addAttribute("shortDescription", randomGoatLiked.getShortDescription());

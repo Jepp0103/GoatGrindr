@@ -37,6 +37,13 @@ h2 {
     margin-top: 3px;
 }
 
+h3 {
+    position: absolute;
+    padding-left: 550px;
+    top: 30px;
+    font-family: "Comic Sans MS";
+}
+
 img{
     user-drag: none;
     user-select: none;
