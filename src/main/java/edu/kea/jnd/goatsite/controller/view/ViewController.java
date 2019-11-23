@@ -52,10 +52,10 @@ public class ViewController {
         authentication = SecurityContextHolder.getContext().getAuthentication();
         currentUser = goatRepository.findGoatByUsername(authentication.getName());
         likeRepository.findAllLikedGoats(currentUser.getId());
-        System.out.println("Liked goats from user: " + likeRepository.findAllLikedGoats(currentUser.getId()));
-        Iterable<Long> likedGoats = likeRepository.findAllLikedGoats(currentUser.getId());
-
-        System.out.println("Liked goat list ");
+//        System.out.println("Liked goats from user: " + likeRepository.findAllLikedGoats(currentUser.getId()));
+//        Iterable<Long> likedGoats = likeRepository.findAllLikedGoats(currentUser.getId());
+//
+//        System.out.println("Liked goat list ");
 
         Random random = new Random();
         int value = goatRepository.findMaxValue();

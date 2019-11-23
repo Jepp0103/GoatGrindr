@@ -130,7 +130,7 @@ class Carousel {
             // check threshold
             if (propX > 0.25 && e.direction == Hammer.DIRECTION_RIGHT) {
                 console.log("To the right....  ");
-                this.disliked();
+                this.liked();
                 location.reload();
                 successful = true;
                 // get right border position
@@ -138,7 +138,7 @@ class Carousel {
 
             } else if (propX < -0.25 && e.direction == Hammer.DIRECTION_LEFT) {
                 console.log("To the left....  ");
-                this.liked();
+                this.disliked();
                 location.reload();
                 successful = true;
                 // get left border position

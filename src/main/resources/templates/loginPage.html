@@ -7,7 +7,7 @@
     <title>Log into GoatGrindr</title>
 </head>
 <body bgcolor="#87cefa">
-<h1>Welcome To GoatGrindr!!! <img src="https://i.imgur.com/WEhgyam.jpg" class="frontPageGoat"></h1>
+<h1>Welcome To GoatGrindr!!! <img src="https://i.imgur.com/WEhgyam.jpg" class="frontPageGoatPic"></h1>
 <div class="security">
     <div th:if="${param.error}">
         Invalid username and password.
@@ -36,21 +36,21 @@
 <h6>---------------------------------------------------------------------------------------</h6>
 <h5 th:inline="text">Currently signed in as: [[${#httpServletRequest.remoteUser}]] </h5>
 <h6>---------------------------------------------------------------------------------------</h6>
-<h5>Already signed in?</h5>
+<h5>If signed in:</h5>
 <div>
     <form action="/goatgrindr">
-        <button type="submit">Proceed to GoatGrindr</button>
+        <button type="submit">Proceed to GoatGrindr swiping</button>
     </form>
     <br>
     <form action="/updategoat">
-        <button type="submit">Update goat</button>
+        <button type="submit">Update goat account</button>
     </form>
 </div>
 <h6>---------------------------------------------------------------------------------------</h6>
 <h5>Not registered yet?</h5>
 <div>
     <form action="/creategoat">
-        <button type="submit">Create a new goat!</button>
+        <button type="submit">Create a new goat account</button>
     </form>
 </div>
 <h6>---------------------------------------------------------------------------------------</h6>
@@ -106,7 +106,7 @@
     textarea:hover {
     }
 
-    .frontPageGoat {
+    .frontPageGoatPic {
         position: absolute;
         right: auto;
         top: 30px;

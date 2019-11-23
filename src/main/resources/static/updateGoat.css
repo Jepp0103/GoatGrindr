@@ -13,6 +13,10 @@ label {
     font-family: "Comic Sans MS";
 }
 
+input {
+    font-family: "Comic Sans MS";
+}
+
 div.text {
     margin: 0;
     padding: 0;
@@ -51,11 +55,15 @@ textarea:focus,
 textarea:hover {
 }
 
-.UpdatePageGoat {
+.updatePageGoatPic {
     position: absolute;
-    right: 390px;
-    top: 110px;
-    width: 625px;
-    height: 417px;
-    padding-left: 1px;
+    right: auto;
+    top: 30px;
+    width: 600px;
+    height: 420px;
+    padding-left: 50px;
+}
+
+button {
+    font-family: "Comic Sans MS";
 }

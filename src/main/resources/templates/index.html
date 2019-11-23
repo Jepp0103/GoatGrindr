@@ -7,51 +7,38 @@
     <link rel="stylesheet" href="/indexStylesheet.css">
 </head>
 <body>
-</form>
+
+
 <div id="board">
-    <h6>---------------------------------------------------------- <img src="https://i.imgur.com/sz8iGFX.png" class="Logo"> </h6>
+    <img src="https://i.imgur.com/sz8iGFX.png"
+         class="logo">
+    <h6>-------------------------------------------</h6>
     <p th:inline="text">Signed in as: [[${#httpServletRequest.remoteUser}]]</p>
-    <form action = "/updategoat">
+    <form action="/updategoat">
         <button type="submit">Update Goat Profile</button>
     </form>
+    <br/>
+    <form action="/login">
+        <button type="submit">Back to front page</button>
+    </form>
+    <br/>
     <form th:action="@{/logout}" method="post">
         <input type="submit" value="Sign Out"/>
     </form>
-    <h6>----------------------------------------------------------</h6>
+    <h6>-------------------------------------------</h6>
     <div id="card">
-        <span th:utext="'<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>Goat: '
-              'Name: ' + ${name}  +
+        <span th:utext="'<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>' +
+              '<br/> Name: ' + ${name}  +
               '<br/> Birthday: ' + ${dob} +
               '<br/> Short description: ' + ${shortDescription} +
               '<br/> Long description: ' + ${longDescription} +
-              '<br/> Gender: ' + ${gender}"></span>
+              '<br/> Gender: ' + ${gender}">
+        </span>
     </div>
-
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" th:src="carousel.js"></script>
 </body>
-
-<Style>
-    .Logo {
-        position: absolute;
-        right: 625px;
-        top: 30px;
-        width: 140px;
-        height: 140px;
-        padding-left: 1px;
-
-    }
-
-    h6 {
-        font-family: "Comic Sans MS";
-    }
-
-    button {
-        font-family: "Comic Sans MS";
-    }
-
-</Style>
 
 </html>

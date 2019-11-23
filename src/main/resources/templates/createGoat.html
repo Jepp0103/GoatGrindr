@@ -6,69 +6,66 @@
 </head>
 <body bgcolor="#fff8dc">
 
-<h1> Fill out info below to begin the process of creating the goat <img src="https://i.imgur.com/VLmqkTr.jpg" class="creationPageGoat"></h1>
-
+<h1> Fill out info below to create a goat account <img src="https://i.imgur.com/VLmqkTr.jpg"
+                                                       class="creationPageGoatPic"></h1>
+<div>
+    <form action="/login">
+        <button type="submit">Cancel/Back to front page</button>
+    </form>
+</div>
+<br>
 <form action="/creategoat" method="post">
-
-        <div class="text">
-    <label for="username"> Username:</label>
-    <input type="text" name="username" id="username"/>
-        </div>
-        <br>
+    <div class="text">
+        <label for="username"> Username:</label>
+        <input type="text" name="username" id="username"/>
+    </div>
     <br>
-        <div class="text">
-    <label for="password">Password: </label>
-    <input type="text" name="password" id="password"/>
-       </div>
-       <br>
     <br>
-        <div class="text">
-    <label for="goatName">Goat name: </label>
-    <input type="text" name="name" id="goatName"/>
-        </div>
-        <br>
+    <div class="text">
+        <label for="password">Password: </label>
+        <input type="password" name="password" id="password"/>
+    </div>
     <br>
-        <div class="text">
-    <label for="DateOfBirth">Date of birth: </label>
-    <input type="text" name="dob" id="DateOfBirth"/>
-        </div>
-        <br>
     <br>
-        <div class="text">
-    <label for="shortDescription">Short description: </label>
-    <input type="text" name="shortDescription" id="shortDescription"/>
-        </div>
-        <br>
+    <div class="text">
+        <label for="goatName">Goat name: </label>
+        <input type="text" name="name" id="goatName"/>
+    </div>
     <br>
-
-        <div class="text">
-    <label for="longDescription">Long description: </label>
-    <input type="text" name="longDescription" id="longDescription"/>
-        </div>
-        <br>
     <br>
-
-        <div class="text">
-    <label for="Gender" >Gender: </label>
-    <input type="text" name="gender" id="Gender"/>
-        </div>
-        <br>
+    <div class="text">
+        <label for="dateOfBirth">Date of birth: </label>
+        <input type="text" name="dob" id="dateOfBirth"/>
+    </div>
     <br>
-        <div class="text">
-    <label for="Role">Role: </label>
-    <input type="text" name="role" id="Role"/>
-        </div>
-        <br>
-
-
+    <br>
+    <div class="text">
+        <label for="gender">Gender: </label>
+        <input type="text" name="gender" id="gender"/>
+    </div>
+    <br>
+    <br>
+    <div class="text">
+        <label for="role">Role: </label>
+        <input type="text" name="role" id="role"/>
+    </div>
+    <br>
+    <br>
+    <div class="text">
+        <label for="shortDescription">Short description: </label>
+        <textarea rows="8" cols="80" type="text" name="shortDescription" id="shortDescription"> </textarea>
+    </div>
+    <br>
+    <br>
+    <div class="text">
+        <label for="longDescription">Long description: </label>
+        <textarea rows="8" cols="80" type="text" name="longDescription" id="longDescription"> </textarea>
+    </div>
+    <br>
     <div>
         <input type="submit" value="Create the account"/>
     </div>
-
 </form>
-
-
-
 </body>
 <style>
     h1 {
@@ -124,16 +121,20 @@
     textarea:hover {
     }
 
-    .creationPageGoat {
+    .creationPageGoatPic {
         position: absolute;
-        right: 390px;
-        top: 110px;
+        right: 450px;
+        top: 70px;
         width: 625px;
         height: 417px;
         padding-left: 1px;
     }
 
     input[type="submit"] {
+        font-family: "Comic Sans MS";
+    }
+
+    button {
         font-family: "Comic Sans MS";
     }
 
