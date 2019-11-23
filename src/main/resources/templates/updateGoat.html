@@ -25,7 +25,7 @@
     <td>
         <div class="text">
             <label for="Username">Username: </label>
-            <input type="text" name="username" th:value="${username}" id="Username">
+            <input type="text" placeholder="Contain '@' and 'mail'" name="username" th:value="${username}" id="Username">
         </div>
     </td>
     <br/>
@@ -49,7 +49,7 @@
     <td>
         <div class="text">
             <label for="DateOfBirth">Date of birth: </label>
-            <input type="text" name="dob" th:value="${dob}" id="DateOfBirth">
+            <input type="text" placeholder="dd.MM.yyyy"  name="dob" th:value="${dob}" id="DateOfBirth">
         </div>
     </td>
     <br/>
@@ -57,7 +57,7 @@
     <td>
         <div class="text">
             <label for="Gender">Gender: </label>
-            <input type="text" name="gender" th:value="${gender}" id="Gender">
+            <input type="text" placeholder="MALE or FEMALE" name="gender" th:value="${gender}" id="Gender">
         </div>
     </td>
     <br/>
@@ -79,7 +79,7 @@
     </td>
     <br/>
     <br/>
-    <input type="submit" value="Update info"/>
+    <input class = "updateButton" type="submit" value="Update info"/>
 </form>
 </body>
 </html>

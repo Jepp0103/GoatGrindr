@@ -17,7 +17,7 @@
 <form action="/creategoat" method="post">
     <div class="text">
         <label for="username"> Username:</label>
-        <input type="text" name="username" id="username"/>
+        <input type="text" placeholder="Contain '@' and 'mail'" name="username" id="username"/>
     </div>
     <br>
     <br>
@@ -35,19 +35,19 @@
     <br>
     <div class="text">
         <label for="dateOfBirth">Date of birth: </label>
-        <input type="text" name="dob" id="dateOfBirth"/>
+        <input type="text" placeholder="dd.MM.yyyy" name="dob" id="dateOfBirth"/>
     </div>
     <br>
     <br>
     <div class="text">
         <label for="gender">Gender: </label>
-        <input type="text" name="gender" id="gender"/>
+        <input type="text" placeholder="MALE or FEMALE" name="gender" id="gender"/>
     </div>
     <br>
     <br>
     <div class="text">
         <label for="role">Role: </label>
-        <input type="text" name="role" id="role"/>
+        <input type="text" placeholder="USER OR ADMIN" name="role" id="role"/>
     </div>
     <br>
     <br>
@@ -63,7 +63,7 @@
     </div>
     <br>
     <div>
-        <input type="submit" value="Create the account"/>
+        <input class = "createButton" type="submit" value="Create the account"/>
     </div>
 </form>
 </body>
@@ -130,12 +130,9 @@
         padding-left: 1px;
     }
 
-    input[type="submit"] {
+    button, .createButton {
         font-family: "Comic Sans MS";
-    }
-
-    button {
-        font-family: "Comic Sans MS";
+        background-color: #ff581c;
     }
 
 

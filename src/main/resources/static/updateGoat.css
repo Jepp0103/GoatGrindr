@@ -64,6 +64,7 @@ textarea:hover {
     padding-left: 50px;
 }
 
-button {
+button, .updateButton {
     font-family: "Comic Sans MS";
+    background-color: #ff581c;
 }

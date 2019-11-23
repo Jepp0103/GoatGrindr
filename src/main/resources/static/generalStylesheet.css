@@ -13,4 +13,8 @@ label, p, button, input, span {
     font-family: "Comic Sans MS";
 }
 
+button, input {
+    background-color: #ff581c;
+}
+
 

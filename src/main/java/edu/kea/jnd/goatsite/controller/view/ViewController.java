@@ -4,15 +4,20 @@ import edu.kea.jnd.goatsite.model.Goat;
 import edu.kea.jnd.goatsite.repository.GoatRepository;
 import edu.kea.jnd.goatsite.repository.LikeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+
+import static edu.kea.jnd.goatsite.model.Gender.FEMALE;
+import static edu.kea.jnd.goatsite.model.Gender.MALE;
 
 
 @Controller
@@ -103,7 +108,9 @@ public class ViewController {
                 && goat.getPassword().length() > 0
                 && goat.getUsername().length() > 0
                 && goat.getUsername().contains("@")
-                && goat.getUsername().contains("mail")) {
+                && goat.getUsername().contains("mail")
+                && goat.getGender() == MALE
+                || goat.getGender() == FEMALE) {
             goatRepository.save(goat);
             return "goatHasBeenCreated.html";
         }
@@ -111,13 +118,15 @@ public class ViewController {
     }
 
     @PostMapping("/updateGoat")
-    public String updateGoatProfile(@ModelAttribute Goat goat, Model model) {
+    public String updateGoatProfile(@ModelAttribute Goat goat) {
         if (goat.getName().length() > 0
                 && goat.getDob() != null
                 && goat.getPassword().length() > 0
                 && goat.getUsername().length() > 0
                 && goat.getUsername().contains("@")
-                && goat.getUsername().contains("mail")) {
+                && goat.getUsername().contains("mail")
+                && goat.getGender() == MALE
+                || goat.getGender() == FEMALE) {
             authentication = SecurityContextHolder.getContext().getAuthentication();
             currentUser = goatRepository.findGoatByUsername(authentication.getName());
             currentUser.setDob(goat.getDob());
