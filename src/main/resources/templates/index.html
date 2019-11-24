@@ -14,11 +14,15 @@
     <h6>-------------------------------------------</h6>
     <p th:inline="text">Signed in as: [[${#httpServletRequest.remoteUser}]]</p>
     <form action="/updategoat">
-        <button type="submit">Update Goat Profile</button>
+        <button type="submit">Update goat profile</button>
     </form>
     <br/>
     <form action="/login">
-        <button type="submit">Back to front page</button>
+        <button type="submit">To front page</button>
+    </form>
+    <br/>
+    <form action="/matches">
+        <button type="submit">To all matches on GoatGrindr</button>
     </form>
     <br/>
     <form th:action="@{/logout}" method="post">

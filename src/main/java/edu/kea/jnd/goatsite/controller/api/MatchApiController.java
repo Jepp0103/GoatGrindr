@@ -12,6 +12,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping(value = "/api")
 public class MatchApiController {
+    Like like;
 
     @Autowired
     private MatchRepository matchRepository;
@@ -21,15 +22,9 @@ public class MatchApiController {
         return matchRepository.findAll();
     }
 
-    @GetMapping("/matches/findallbygoatid")
-    public Iterable<Match> getMatchesByGoatId(@RequestParam(value = "id") Long id){
-        return matchRepository.findAllByGoatId(id);
-    }
 
     @PostMapping("/matches")
-    public Iterable<Match> addMatches(@Valid @RequestBody Match match){
-        matchRepository.save(match);
-        return matchRepository.findAll();
+    public Match createMatch(@Valid @RequestBody Match match) {
+        return matchRepository.save(match);
     }
-
 }

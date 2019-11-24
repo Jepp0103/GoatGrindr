@@ -1,12 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Matches</title>
-    <h1> Matches </h1>
-
+    <link rel="stylesheet" type="text/css" href="generalStylesheet.css">
 </head>
-<body>
+<body bgcolor="#ba4f80">
 
+<h1>All matches on goatgrindr</h1>
+<div>
+    <form action="/login">
+        <button type="submit">To front page</button>
+    </form>
+</div>
+<br>
+<div>
+    <form action="/goatgrindr">
+        <button type="submit">To Goatgrindr swiping</button>
+    </form>
+</div>
+<br>
+<p th:inline="text">Signed in as: [[${#httpServletRequest.remoteUser}]]</p>
+<br>
+<br>
+<form action="/matches" method="get">
+    <td>
+        <div>
+            <h3>All matches</h3>
+            <label th:text="${matches}"></label>
+        </div>
+    </td>
+</form>
 </body>
 </html>

@@ -4,7 +4,6 @@ import edu.kea.jnd.goatsite.model.Goat;
 import edu.kea.jnd.goatsite.repository.GoatRepository;
 import edu.kea.jnd.goatsite.repository.LikeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -12,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.List;
 import java.util.Random;
 
 import static edu.kea.jnd.goatsite.model.Gender.FEMALE;
@@ -30,7 +30,6 @@ public class ViewController {
     @Autowired
     LikeRepository likeRepository;
 
-
     @RequestMapping("/carousel.js")
     public String findParticipators(Model model) {
         authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -41,8 +40,11 @@ public class ViewController {
     }
 
     @GetMapping(value = "/matches")
-    public String getMatches(){
-        return "matches.html";
+    public String getMatches(Model model) {
+        List<String> matches = likeRepository.findAllMatches();
+        model.addAttribute("matches", matches.toString());
+        System.out.println("Matches: " + likeRepository.findAllMatches());
+        return "match.html";
     }
 
     @GetMapping(value = "/")
@@ -62,8 +64,8 @@ public class ViewController {
         likeRepository.findAllLikedGoats(currentUser.getId());
         Random random = new Random();
         int value = goatRepository.findMaxValue();
-            int randomNumber = random.nextInt(value);
-            randomGoatLiked = goatRepository.findRandomGoat(randomNumber + 1);
+        int randomNumber = random.nextInt(value);
+        randomGoatLiked = goatRepository.findRandomGoat(randomNumber + 1);
         model.addAttribute("name", randomGoatLiked.getName());
         model.addAttribute("dob", randomGoatLiked.getDob());
         model.addAttribute("shortDescription", randomGoatLiked.getShortDescription());
