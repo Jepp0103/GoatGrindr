@@ -19,11 +19,24 @@ label, p, button, input, span {
     font-family: "Comic Sans MS";
 }
 
-
-
 button, input {
     background-color: #ff581c;
 }
 
+.matches {
+   font-size: 25px;
+}
 
+.matchTitle {
+    font-size: 30px;
+}
+
+.matchGoatPic {
+    position: absolute;
+    right: auto;
+    top: 30px;
+    width: 700px;
+    height: 600px;
+    padding-left: 350px;
+}
 

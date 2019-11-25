@@ -8,7 +8,7 @@
 </head>
 <body bgcolor="#ba4f80">
 
-<h1>All matches on goatgrindr</h1>
+<h1>All matches on goatgrindr <img src="https://s3.amazonaws.com/oxfamamericaunwrapped.com/wp-content/uploads/2013/07/OAU10-53_pair_of_goats_2014-updated-image-400x400.jpg" class="matchGoatPic"></h1>
 <div>
     <form action="/login">
         <button type="submit">To front page</button>
@@ -24,13 +24,12 @@
 <p th:inline="text">Signed in as: [[${#httpServletRequest.remoteUser}]]</p>
 <br>
 <br>
-<form action="/matches" method="get">
-    <td>
-        <div>
-            <h3>All matches</h3>
-            <label th:text="${matches}"></label>
-        </div>
-    </td>
-</form>
+<div>
+    <h3 class="matchTitle">All matches</h3>
+    <tr th:each="match : ${matches}">
+        <td><span class="matches" th:text="${match}"></span></td>
+        <br>
+    </tr>
+</div>
 </body>
 </html>

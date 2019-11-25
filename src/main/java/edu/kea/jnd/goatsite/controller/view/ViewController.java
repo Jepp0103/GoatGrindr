@@ -1,8 +1,10 @@
 package edu.kea.jnd.goatsite.controller.view;
 
 import edu.kea.jnd.goatsite.model.Goat;
+import edu.kea.jnd.goatsite.model.Match;
 import edu.kea.jnd.goatsite.repository.GoatRepository;
 import edu.kea.jnd.goatsite.repository.LikeRepository;
+import edu.kea.jnd.goatsite.repository.MatchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,6 +32,9 @@ public class ViewController {
     @Autowired
     LikeRepository likeRepository;
 
+    @Autowired
+    MatchRepository matchRepository;
+
     @RequestMapping("/carousel.js")
     public String findParticipators(Model model) {
         authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -41,9 +46,9 @@ public class ViewController {
 
     @GetMapping(value = "/matches")
     public String getMatches(Model model) {
-        List<String> matches = likeRepository.findAllMatches();
-        model.addAttribute("matches", matches.toString());
-        System.out.println("Matches: " + likeRepository.findAllMatches());
+        List<String> matches = matchRepository.findAllMatches();
+        model.addAttribute("matches", matches);
+        System.out.println("Matches: " + matchRepository.findAllMatches().toString());
         return "match.html";
     }
 
