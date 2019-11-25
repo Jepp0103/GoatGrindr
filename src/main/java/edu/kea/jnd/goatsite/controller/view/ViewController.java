@@ -1,7 +1,6 @@
 package edu.kea.jnd.goatsite.controller.view;
 
 import edu.kea.jnd.goatsite.model.Goat;
-import edu.kea.jnd.goatsite.model.Match;
 import edu.kea.jnd.goatsite.repository.GoatRepository;
 import edu.kea.jnd.goatsite.repository.LikeRepository;
 import edu.kea.jnd.goatsite.repository.MatchRepository;
@@ -18,6 +17,8 @@ import java.util.Random;
 
 import static edu.kea.jnd.goatsite.model.Gender.FEMALE;
 import static edu.kea.jnd.goatsite.model.Gender.MALE;
+import static edu.kea.jnd.goatsite.model.Gender.NONE;
+
 
 
 @Controller
@@ -112,7 +113,8 @@ public class ViewController {
                 && goat.getUsername().contains("@")
                 && goat.getUsername().contains("mail")
                 && goat.getGender() == MALE
-                || goat.getGender() == FEMALE) {
+                || goat.getGender() == FEMALE
+                || goat.getGender() == NONE) {
             goatRepository.save(goat);
             return "goatHasBeenCreated.html";
         }
@@ -128,7 +130,8 @@ public class ViewController {
                 && goat.getUsername().contains("@")
                 && goat.getUsername().contains("mail")
                 && goat.getGender() == MALE
-                || goat.getGender() == FEMALE) {
+                || goat.getGender() == FEMALE
+                || goat.getGender() == NONE) {
             authentication = SecurityContextHolder.getContext().getAuthentication();
             currentUser = goatRepository.findGoatByUsername(authentication.getName());
             currentUser.setDob(goat.getDob());

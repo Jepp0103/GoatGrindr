@@ -1,6 +1,4 @@
 package edu.kea.jnd.goatsite.controller.api;
-
-import edu.kea.jnd.goatsite.model.Like;
 import edu.kea.jnd.goatsite.model.Match;
 
 import edu.kea.jnd.goatsite.repository.MatchRepository;
@@ -12,7 +10,6 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping(value = "/api")
 public class MatchApiController {
-    Like like;
 
     @Autowired
     private MatchRepository matchRepository;

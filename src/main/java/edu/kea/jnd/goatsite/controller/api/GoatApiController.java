@@ -4,7 +4,6 @@ import edu.kea.jnd.goatsite.model.Gender;
 import edu.kea.jnd.goatsite.repository.GoatRepository;
 import edu.kea.jnd.goatsite.model.Goat;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

@@ -1,9 +1,6 @@
 package edu.kea.jnd.goatsite.controller.api;
 import edu.kea.jnd.goatsite.model.Dislike;
-import edu.kea.jnd.goatsite.model.Goat;
-import edu.kea.jnd.goatsite.model.Like;
 import edu.kea.jnd.goatsite.repository.DislikeRepository;
-import edu.kea.jnd.goatsite.repository.LikeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
